@@ -1,0 +1,65 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.nav {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba($color-black, 0.9);
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: $z-index-nav;
+  padding: $spacing-xs $spacing-md;
+  border: 1px solid rgba($color-red, 0.3);
+
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__links {
+    display: flex;
+    gap: $spacing-sm;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $color-white;
+    font-weight: 500;
+    font-size: $font-size-base;
+    padding: $spacing-xs $spacing-md;
+    border-radius: 25px;
+    @include smooth-transition(all);
+    position: relative;
+
+    &:hover {
+      color: $color-red;
+      background: rgba($color-red, 0.1);
+      transform: translateY(-2px);
+    }
+
+    &Active {
+      color: $color-red;
+      background: rgba($color-red, 0.2);
+      @include red-glow;
+    }
+  }
+}
+
+@include respond-to(md) {
+  .nav {
+    top: 1.5rem;
+    padding: $spacing-xs $spacing-sm;
+
+    &__links {
+      gap: $spacing-xs;
+    }
+
+    &__link {
+      font-size: $font-size-small;
+      padding: $spacing-xs $spacing-sm;
+    }
+  }
+}
+

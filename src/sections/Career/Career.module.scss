@@ -1,0 +1,63 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.career {
+  min-height: 100vh;
+  padding: $spacing-2xl $spacing-xl;
+  background: $color-black;
+  position: relative;
+
+  &__container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    color: $color-red;
+    margin-bottom: $spacing-2xl;
+    text-align: center;
+  }
+
+  &__info {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: $spacing-2xl;
+    background: rgba($color-black, 0.5);
+    border: 1px solid rgba($color-red, 0.3);
+    border-radius: 1rem;
+  }
+
+  &__placeholder {
+    font-size: $font-size-xl;
+    color: rgba($color-white, 0.7);
+    margin-bottom: $spacing-md;
+  }
+
+  &__note {
+    font-size: $font-size-base;
+    color: rgba($color-white, 0.5);
+    line-height: 1.6;
+  }
+}
+
+@include respond-to(md) {
+  .career {
+    padding: $spacing-xl $spacing-lg;
+
+    &__title {
+      font-size: $font-size-2xl;
+    }
+
+    &__info {
+      padding: $spacing-xl;
+    }
+
+    &__placeholder {
+      font-size: $font-size-large;
+    }
+  }
+}
+

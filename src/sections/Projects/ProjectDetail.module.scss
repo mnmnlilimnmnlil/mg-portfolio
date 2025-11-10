@@ -1,0 +1,165 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.projectDetail {
+  min-height: 100vh;
+  padding: $spacing-2xl $spacing-xl;
+  background: $color-black;
+  position: relative;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__backButton {
+    margin-bottom: $spacing-xl;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+
+  &__header {
+    margin-bottom: $spacing-xl;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    color: $color-red;
+    margin-bottom: $spacing-md;
+  }
+
+  &__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__techTag {
+    padding: $spacing-xs $spacing-md;
+    background: rgba($color-red, 0.1);
+    border: 1px solid rgba($color-red, 0.3);
+    border-radius: 20px;
+    color: $color-red;
+    font-size: $font-size-small;
+    font-weight: 500;
+  }
+
+  &__links {
+    display: flex;
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: $spacing-sm $spacing-lg;
+    background: transparent;
+    border: 1px solid $color-red;
+    border-radius: 20px;
+    color: $color-red;
+    text-decoration: none;
+    @include smooth-transition(all);
+
+    &:hover {
+      background: $color-red;
+      color: $color-white;
+      transform: translateY(-2px);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2xl;
+  }
+
+  &__section {
+    background: rgba($color-black, 0.5);
+    border: 1px solid rgba($color-red, 0.3);
+    border-radius: 1rem;
+    padding: $spacing-xl;
+  }
+
+  &__sectionTitle {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: $color-red;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__description {
+    font-size: $font-size-base;
+    color: rgba($color-white, 0.9);
+    line-height: 1.8;
+    white-space: pre-line;
+  }
+
+  &__images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-lg;
+  }
+
+  &__imageWrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: rgba($color-black, 0.5);
+    border: 1px solid rgba($color-red, 0.2);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    @include smooth-transition(all);
+
+    &:hover {
+      border-color: $color-red;
+      @include red-glow;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__codeReview {
+    background: rgba($color-black, 0.8);
+    border: 1px solid rgba($color-red, 0.2);
+    border-radius: 0.5rem;
+    padding: $spacing-lg;
+    overflow-x: auto;
+  }
+
+  &__codeText {
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-small;
+    color: rgba($color-white, 0.9);
+    line-height: 1.6;
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+
+@include respond-to(md) {
+  .projectDetail {
+    padding: $spacing-xl $spacing-lg;
+
+    &__title {
+      font-size: $font-size-2xl;
+    }
+
+    &__section {
+      padding: $spacing-lg;
+    }
+
+    &__images {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+

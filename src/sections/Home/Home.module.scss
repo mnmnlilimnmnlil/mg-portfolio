@@ -1,0 +1,84 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.home {
+  min-height: 100vh;
+  @include flex-center;
+  background: $color-black;
+  padding: $spacing-xl;
+  position: relative;
+
+  &__container {
+    max-width: 90%;
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+  }
+
+  &__content {
+    background: rgba($color-black, 0.9);
+    border-radius: 2rem;
+    padding: $spacing-2xl $spacing-xl;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba($color-red, 0.3);
+    position: relative;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    color: $color-red;
+    margin-bottom: $spacing-lg;
+    line-height: 1.3;
+  }
+
+  &__description {
+    margin-bottom: $spacing-xl;
+  }
+
+  &__descriptionText {
+    font-size: $font-size-large;
+    color: rgba($color-white, 0.9);
+    line-height: 1.8;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: $spacing-lg;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+}
+
+@include respond-to(md) {
+  .home {
+    padding: $spacing-lg;
+
+    &__content {
+      padding: $spacing-xl $spacing-lg;
+    }
+
+    &__title {
+      font-size: $font-size-2xl;
+    }
+
+    &__descriptionText {
+      font-size: $font-size-base;
+    }
+
+    &__actions {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}
+

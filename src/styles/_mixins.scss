@@ -1,0 +1,61 @@
+@import './variables';
+
+// Red Glow Effect
+@mixin red-glow {
+  box-shadow: 0 0 20px rgba($color-red, 0.5);
+  transition: box-shadow $transition-duration $transition-base;
+  
+  &:hover {
+    box-shadow: 0 0 30px rgba($color-red, 0.8);
+  }
+}
+
+// Smooth Transition
+@mixin smooth-transition($property: all) {
+  transition: $property $transition-duration $transition-base;
+}
+
+// Responsive
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+}
+
+// Flexbox Center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Absolute Center
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Text Gradient
+@mixin text-gradient {
+  background: linear-gradient(135deg, $color-red, lighten($color-red, 10%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+

@@ -1,0 +1,70 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.button {
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  border-radius: 50px;
+  font-size: $font-size-base;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  @include smooth-transition(all);
+  position: relative;
+  overflow: hidden;
+
+  &__primary {
+    background: linear-gradient(135deg, $color-red 0%, darken($color-red, 5%) 100%);
+    color: $color-white;
+    @include red-glow;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba($color-white, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    &:hover {
+      background: linear-gradient(135deg, lighten($color-red, 5%) 0%, $color-red 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba($color-red, 0.6);
+      
+      &::before {
+        left: 100%;
+      }
+    }
+  }
+
+  &__secondary {
+    background: transparent;
+    color: $color-red;
+    border: 2px solid $color-red;
+
+    &:hover {
+      background: $color-red;
+      color: $color-white;
+      transform: translateY(-2px);
+    }
+  }
+
+  &__outline {
+    background: transparent;
+    color: $color-white;
+    border: 2px solid $color-white;
+
+    &:hover {
+      background: $color-white;
+      color: $color-black;
+      transform: translateY(-2px);
+    }
+  }
+}
+

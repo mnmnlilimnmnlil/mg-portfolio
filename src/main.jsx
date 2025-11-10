@@ -1,15 +1,12 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'; // 라우터를 사용하기 위해 추가
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename="/mg-portfolio/"> 
-      {/* 라우터로 앱을 감싸기 */}
-      {/* basename에 Repository 경로를 추가 */}
+    <BrowserRouter basename="/mg-portfolio/">
       <App />
     </BrowserRouter>
   </StrictMode>,
-)
+);

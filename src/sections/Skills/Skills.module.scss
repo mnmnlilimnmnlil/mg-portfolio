@@ -1,0 +1,119 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.skills {
+  min-height: 100vh;
+  @include flex-center;
+  background: $color-black;
+  padding: $spacing-2xl $spacing-xl;
+  position: relative;
+
+  &__container {
+    max-width: 90%;
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    color: $color-red;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: $spacing-xl;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-sm;
+    @include smooth-transition(all);
+    cursor: default;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  &__imageWrapper {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color-black, 0.5);
+    border: 1px solid rgba($color-red, 0.3);
+    border-radius: 1rem;
+    padding: $spacing-md;
+    @include smooth-transition(all);
+    position: relative;
+
+    &:hover {
+      border-color: $color-red;
+      @include red-glow;
+      background: rgba($color-red, 0.1);
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+  }
+
+  &__item:hover &__image {
+    filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(340deg);
+  }
+
+  &__fallback {
+    display: none;
+    color: $color-white;
+    font-size: $font-size-small;
+    font-weight: 600;
+  }
+
+  &__name {
+    color: rgba($color-white, 0.9);
+    font-size: $font-size-base;
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+@include respond-to(md) {
+  .skills {
+    padding: $spacing-xl $spacing-lg;
+
+    &__title {
+      font-size: $font-size-2xl;
+      margin-bottom: $spacing-xl;
+    }
+
+    &__grid {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: $spacing-lg;
+    }
+
+    &__imageWrapper {
+      width: 80px;
+      height: 80px;
+      padding: $spacing-sm;
+    }
+
+    &__name {
+      font-size: $font-size-small;
+    }
+  }
+}
+

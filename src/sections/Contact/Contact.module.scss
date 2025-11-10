@@ -1,0 +1,103 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.contact {
+  min-height: 100vh;
+  @include flex-center;
+  padding: $spacing-2xl $spacing-xl;
+  background: $color-black;
+  position: relative;
+
+  &__container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    color: $color-red;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__formWrapper {
+    background: rgba($color-black, 0.9);
+    border: 1px solid rgba($color-red, 0.3);
+    border-radius: 1rem;
+    padding: $spacing-xl;
+    margin-bottom: $spacing-xl;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  &__label {
+    color: $color-white;
+    margin-bottom: $spacing-xs;
+    font-weight: 500;
+  }
+
+  &__input,
+  &__textarea {
+    padding: $spacing-sm;
+    background: rgba($color-black, 0.5);
+    border: 1px solid rgba($color-red, 0.3);
+    border-radius: 0.5rem;
+    color: $color-white;
+    font-size: $font-size-base;
+    font-family: $font-family-primary;
+    @include smooth-transition(all);
+
+    &:focus {
+      outline: none;
+      border-color: $color-red;
+      @include red-glow;
+    }
+
+    &::placeholder {
+      color: rgba($color-white, 0.5);
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  &__button {
+    align-self: center;
+    margin-top: $spacing-sm;
+  }
+
+  &__footer {
+    color: rgba($color-white, 0.7);
+    font-size: $font-size-large;
+    font-style: italic;
+  }
+}
+
+@include respond-to(md) {
+  .contact {
+    padding: $spacing-xl $spacing-lg;
+
+    &__title {
+      font-size: $font-size-2xl;
+    }
+
+    &__formWrapper {
+      padding: $spacing-lg;
+    }
+  }
+}
+
