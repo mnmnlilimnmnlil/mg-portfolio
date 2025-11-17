@@ -57,6 +57,7 @@ function AppContent() {
       const projectId = prevPath.split('/projects/')[1];
       if (projectId) {
         sessionStorage.setItem('scrollToProject', projectId);
+        sessionStorage.setItem('fromProjectDetail', 'true');
       }
     }
 
@@ -68,6 +69,11 @@ function AppContent() {
 
     // 다른 페이지로 이동한 경우 상단으로 스크롤
     if (prevPath !== currentPath) {
+      // 프로젝트 상세 페이지로 이동하는 경우가 아니면 플래그 제거
+      if (!currentPath.startsWith('/projects/')) {
+        sessionStorage.removeItem('fromProjectDetail');
+      }
+      
       setTimeout(() => {
         if (lenisRef.current) {
           lenisRef.current.scrollTo(0, { immediate: false });

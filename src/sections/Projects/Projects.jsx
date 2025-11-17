@@ -17,6 +17,8 @@ const Projects = () => {
   });
   const projectRefs = useRef({});
   const moreButtonRef = useRef(null);
+  const isInitialMount = useRef(true);
+  const prevShowAllRef = useRef(showAll);
   
   const allProjects = [
     {
@@ -86,8 +88,15 @@ const Projects = () => {
 
   // 접기 버튼 클릭 시 (showAll이 false로 변경될 때) "더 둘러보기" 버튼이 화면 하단에 보이도록 즉시 이동
   useEffect(() => {
-    if (!showAll) {
-      // showAll이 false가 되었을 때만 실행 (접기 버튼 클릭)
+    // 초기 마운트가 아니고, showAll이 true에서 false로 변경된 경우에만 실행
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      prevShowAllRef.current = showAll;
+      return;
+    }
+
+    if (!showAll && prevShowAllRef.current === true) {
+      // showAll이 true에서 false로 변경된 경우만 실행 (접기 버튼 클릭)
       // 레이아웃 변경이 완료된 후 스크롤 위치 재계산
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -115,13 +124,33 @@ const Projects = () => {
         });
       });
     }
+    
+    prevShowAllRef.current = showAll;
   }, [showAll]);
 
   useEffect(() => {
-    // 프로젝트 상세 페이지에서 돌아온 경우 해당 프로젝트로 스크롤
+    // 초기 마운트 시 sessionStorage 정리
+    if (isInitialMount.current) {
+      const scrollToProjectId = sessionStorage.getItem('scrollToProject');
+      const fromProjectDetail = sessionStorage.getItem('fromProjectDetail');
+      
+      // 초기 로드 시 남아있는 값 정리 (프로젝트 상세 페이지에서 온 것이 아닌 경우)
+      if (scrollToProjectId && fromProjectDetail !== 'true') {
+        sessionStorage.removeItem('scrollToProject');
+        sessionStorage.removeItem('fromProjectDetail');
+      }
+      
+      isInitialMount.current = false;
+      return;
+    }
+
+    // 프로젝트 상세 페이지에서 돌아온 경우에만 해당 프로젝트로 스크롤
     const scrollToProjectId = sessionStorage.getItem('scrollToProject');
-    if (scrollToProjectId) {
+    const fromProjectDetail = sessionStorage.getItem('fromProjectDetail') === 'true';
+    
+    if (scrollToProjectId && fromProjectDetail) {
       sessionStorage.removeItem('scrollToProject');
+      sessionStorage.removeItem('fromProjectDetail');
       
       setTimeout(() => {
         const projectElement = projectRefs.current[scrollToProjectId];

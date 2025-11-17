@@ -2,7 +2,6 @@ import React from 'react';
 import { FaGithub, FaFileDownload } from 'react-icons/fa';
 import Button from '../../components/Button';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import LiquidEther from '../../components/LiquidEther/LiquidEther';
 import styles from './Home.module.scss';
 
 // 이력서 import
@@ -27,25 +26,6 @@ const Home = () => {
 
   return (
     <section className={styles.home} id="home">
-      <div className={styles.home__background}>
-        <LiquidEther
-          colors={['#E63946', '#FF6B7A', '#FF9FA8']}
-          mouseForce={15}
-          cursorSize={120}
-          isViscous={false}
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.4}
-          isBounce={false}
-          autoDemo={true}
-          autoSpeed={0.4}
-          autoIntensity={1.8}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
-        />
-      </div>
       <div className={styles.home__container}>
         <div 
           ref={contentRef}
