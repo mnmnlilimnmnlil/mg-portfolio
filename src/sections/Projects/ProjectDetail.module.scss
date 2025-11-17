@@ -2,14 +2,11 @@
 @import '../../styles/mixins';
 
 .projectDetail {
-  min-height: 100vh;
-  padding: $spacing-2xl $spacing-xl;
-  background: $color-black;
-  position: relative;
+  @include section-base;
+  padding: calc(4rem + 80px) $spacing-xl $spacing-2xl; // 네비게이션 높이 + 여백
 
   &__container {
-    max-width: 1200px;
-    margin: 0 auto;
+    @include section-container(1200px);
   }
 
   &__backButton {
@@ -20,14 +17,19 @@
   }
 
   &__header {
+    margin-top: $spacing-xl;
     margin-bottom: $spacing-xl;
   }
 
   &__title {
     font-size: $font-size-3xl;
     font-weight: 700;
-    color: $color-red;
+    color: $color-white;
     margin-bottom: $spacing-md;
+  }
+
+  &__titleHighlight {
+    @include red-title-highlight;
   }
 
   &__tech {
@@ -37,13 +39,7 @@
   }
 
   &__techTag {
-    padding: $spacing-xs $spacing-md;
-    background: rgba($color-red, 0.1);
-    border: 1px solid rgba($color-red, 0.3);
-    border-radius: 20px;
-    color: $color-red;
-    font-size: $font-size-small;
-    font-weight: 500;
+    @include red-tech-tag;
   }
 
   &__links {
@@ -57,19 +53,6 @@
     display: flex;
     align-items: center;
     gap: $spacing-xs;
-    padding: $spacing-sm $spacing-lg;
-    background: transparent;
-    border: 1px solid $color-red;
-    border-radius: 20px;
-    color: $color-red;
-    text-decoration: none;
-    @include smooth-transition(all);
-
-    &:hover {
-      background: $color-red;
-      color: $color-white;
-      transform: translateY(-2px);
-    }
   }
 
   &__content {
@@ -79,23 +62,25 @@
   }
 
   &__section {
-    background: rgba($color-black, 0.5);
-    border: 1px solid rgba($color-red, 0.3);
-    border-radius: 1rem;
+    @include red-border-box(0.5);
+    @include red-gradient-line(left, 4px);
     padding: $spacing-xl;
   }
 
   &__sectionTitle {
     font-size: $font-size-xl;
     font-weight: 600;
-    color: $color-red;
+    color: $color-white;
     margin-bottom: $spacing-lg;
   }
 
+  &__sectionTitleHighlight {
+    @include red-title-highlight;
+  }
+
   &__description {
+    @include text-normal;
     font-size: $font-size-base;
-    color: rgba($color-white, 0.9);
-    line-height: 1.8;
     white-space: pre-line;
   }
 
@@ -108,16 +93,9 @@
   &__imageWrapper {
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: rgba($color-black, 0.5);
-    border: 1px solid rgba($color-red, 0.2);
+    @include red-image-wrapper;
     border-radius: 0.5rem;
     overflow: hidden;
-    @include smooth-transition(all);
-
-    &:hover {
-      border-color: $color-red;
-      @include red-glow;
-    }
   }
 
   &__image {
@@ -127,18 +105,22 @@
   }
 
   &__codeReview {
-    background: rgba($color-black, 0.8);
-    border: 1px solid rgba($color-red, 0.2);
+    @include red-border-box(0.8);
+    @include red-gradient-line(left, 3px);
     border-radius: 0.5rem;
     padding: $spacing-lg;
     overflow-x: auto;
+    
+    &::before {
+      background: $color-red;
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
   }
 
   &__codeText {
+    @include text-normal;
     font-family: 'Courier New', monospace;
     font-size: $font-size-small;
-    color: rgba($color-white, 0.9);
-    line-height: 1.6;
     margin: 0;
     white-space: pre-wrap;
     word-wrap: break-word;

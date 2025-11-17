@@ -2,34 +2,62 @@
 @import '../../styles/mixins';
 
 .home {
-  min-height: 100vh;
+  @include section-base;
   @include flex-center;
-  background: $color-black;
-  padding: $spacing-xl;
+  padding: $spacing-2xl $spacing-xl;
   position: relative;
+  overflow: hidden;
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.15;
+    pointer-events: none;
+  }
 
   &__container {
-    max-width: 90%;
-    width: 100%;
-    max-width: 1000px;
+    @include section-container(1000px);
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
 
   &__content {
-    background: rgba($color-black, 0.9);
+    @include red-border-box(0.7);
     border-radius: 2rem;
     padding: $spacing-2xl $spacing-xl;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba($color-red, 0.3);
-    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    @include smooth-transition(all);
+    transition-duration: 0.8s;
+  }
+
+  &__contentVisible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   &__title {
     font-size: $font-size-3xl;
     font-weight: 700;
-    color: $color-red;
+    color: $color-white;
     margin-bottom: $spacing-lg;
     line-height: 1.3;
+  }
+
+  &__titleHighlight {
+    color: $color-red;
+    font-weight: 700;
+  }
+
+  &__titleName {
+    color: $color-red;
+    font-weight: 700;
   }
 
   &__description {
@@ -37,9 +65,8 @@
   }
 
   &__descriptionText {
+    @include text-normal;
     font-size: $font-size-large;
-    color: rgba($color-white, 0.9);
-    line-height: 1.8;
     margin-bottom: $spacing-sm;
   }
 

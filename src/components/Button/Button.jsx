@@ -3,14 +3,16 @@ import styles from './Button.module.scss';
 
 const Button = ({ 
   children, 
-  variant = 'primary', 
+  variant = 'primary', // 'primary' | 'secondary' | 'tertiary'
   onClick, 
   href, 
   target,
   className = '',
   ...props 
 }) => {
-  const buttonClass = `${styles.button} ${styles[`button__${variant}`]} ${className}`.trim();
+  // outline을 tertiary로 매핑 (하위 호환성)
+  const mappedVariant = variant === 'outline' ? 'tertiary' : variant;
+  const buttonClass = `${styles.button} ${styles[`button__${mappedVariant}`]} ${className}`.trim();
 
   if (href) {
     return (

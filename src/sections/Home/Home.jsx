@@ -1,12 +1,24 @@
 import React from 'react';
 import { FaGithub, FaFileDownload } from 'react-icons/fa';
 import Button from '../../components/Button';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import LiquidEther from '../../components/LiquidEther/LiquidEther';
 import styles from './Home.module.scss';
 
+// 이력서 import
+import resumeFile from '../../assets/resume/박민규_이력서_자기소개서.pdf';
+
 const Home = () => {
+  const [contentRef, isVisible] = useIntersectionObserver({ threshold: 0.2 });
+
   const handleResumeDownload = () => {
     // 이력서 다운로드 로직
-    console.log('이력서 다운로드');
+    const link = document.createElement('a');
+    link.href = resumeFile;
+    link.download = '박민규_이력서_자기소개서.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleGithubVisit = () => {
@@ -15,11 +27,34 @@ const Home = () => {
 
   return (
     <section className={styles.home} id="home">
+      <div className={styles.home__background}>
+        <LiquidEther
+          colors={['#E63946', '#FF6B7A', '#FF9FA8']}
+          mouseForce={15}
+          cursorSize={120}
+          isViscous={false}
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.4}
+          isBounce={false}
+          autoDemo={true}
+          autoSpeed={0.4}
+          autoIntensity={1.8}
+          takeoverDuration={0.25}
+          autoResumeDelay={3000}
+          autoRampDuration={0.6}
+        />
+      </div>
       <div className={styles.home__container}>
-        <div className={styles.home__content}>
+        <div 
+          ref={contentRef}
+          className={`${styles.home__content} ${isVisible ? styles.home__contentVisible : ''}`}
+        >
           <h1 className={styles.home__title}>
             안녕하세요,<br />
-            결국 해내는 개발자 박민규입니다.
+            <span className={styles.home__titleHighlight}>결국 해내는 개발자</span>{' '}
+            <span className={styles.home__titleName}>박민규</span>입니다.
           </h1>
           
           <div className={styles.home__description}>
@@ -37,7 +72,7 @@ const Home = () => {
               <FaFileDownload /> 이력서 다운로드
             </Button>
             <Button
-              variant="secondary"
+              variant="tertiary"
               onClick={handleGithubVisit}
               className={styles.home__button}
             >

@@ -2,32 +2,85 @@
 @import '../../styles/mixins';
 
 .skills {
-  min-height: 100vh;
-  @include flex-center;
-  background: $color-black;
-  padding: $spacing-2xl $spacing-xl;
-  position: relative;
+  @include section-base;
 
   &__container {
-    max-width: 90%;
-    width: 100%;
-    max-width: 1200px;
+    @include section-container(1200px);
     text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    @include smooth-transition(all);
+    transition-duration: 0.8s;
+  }
+
+  &__containerVisible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   &__title {
-    font-size: $font-size-3xl;
-    font-weight: 700;
-    color: $color-red;
-    margin-bottom: $spacing-2xl;
+    @include section-title;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__titleHighlight {
+    @include red-title-highlight;
+  }
+
+  &__description {
+    @include text-muted;
+    text-align: center;
+    margin: 0 auto 4rem;
+    font-size: $font-size-base;
+    max-width: fit-content;
+    line-height: 1.5;
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-bottom: 4rem;
+  }
+
+  &__tab {
+    @include red-tab-button;
+  }
+
+  &__tabActive {
+    @include red-tab-button;
+    border-color: rgba($color-red, 0.5);
+    color: $color-white;
+    background: rgba($color-red, 0.15);
+    box-shadow: 0 0 15px rgba($color-red, 0.3);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba($color-red, 0.1), rgba($color-red, 0.05));
+      z-index: -1;
+    }
   }
 
   &__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: $spacing-xl;
-    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: $spacing-sm;
+    width: 100%;
+    max-width: 600px;
     margin: 0 auto;
+  }
+
+  &__itemWrapper {
+    position: relative;
+    flex: 0 0 calc((100% - #{$spacing-sm * 3}) / 4);
+    min-width: 0;
   }
 
   &__item {
@@ -36,11 +89,10 @@
     align-items: center;
     gap: $spacing-sm;
     @include smooth-transition(all);
-    cursor: default;
-
-    &:hover {
-      transform: translateY(-5px);
-    }
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
   }
 
   &__imageWrapper {
@@ -49,30 +101,29 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba($color-black, 0.5);
-    border: 1px solid rgba($color-red, 0.3);
-    border-radius: 1rem;
     padding: $spacing-md;
-    @include smooth-transition(all);
-    position: relative;
-
-    &:hover {
-      border-color: $color-red;
-      @include red-glow;
-      background: rgba($color-red, 0.1);
-    }
+    @include red-image-wrapper;
   }
 
   &__image {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: brightness(0) invert(1);
-    transition: filter 0.3s ease;
+    transition: filter 0.3s ease, transform 0.3s ease;
   }
 
-  &__item:hover &__image {
-    filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(340deg);
+  &__imageGitHub {
+    filter: brightness(0) invert(1);
+  }
+
+  &__itemWrapper:hover &__image {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+  }
+
+  &__itemWrapper:hover &__imageGitHub {
+    filter: brightness(0) invert(1) brightness(1.2);
+    transform: scale(1.05);
   }
 
   &__fallback {
@@ -83,12 +134,61 @@
   }
 
   &__name {
-    color: rgba($color-white, 0.9);
+    @include text-important;
     font-size: $font-size-base;
-    font-weight: 500;
-    margin: 0;
+    font-weight: 600;
+    margin: $spacing-xs 0 0 0;
     text-align: center;
   }
+
+  &__tooltip {
+    position: fixed;
+    background: rgba($color-black, 0.95);
+    border: 1px solid rgba($color-white, 0.3);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    width: max-content;
+    max-width: 300px;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transform: translate(0, 0);
+    @include smooth-transition(opacity);
+    display: inline-block;
+    white-space: normal;
+  }
+
+  &__tooltipName {
+    @include text-important;
+    font-size: $font-size-base;
+    font-weight: 600;
+    color: $color-white;
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+  }
+
+  &__tooltipDescription {
+    @include text-normal;
+    font-size: $font-size-small;
+    color: rgba($color-white, 0.8);
+    line-height: 1.4;
+    margin: 0;
+    white-space: pre-line;
+  }
+
+  &__description {
+    @include text-normal;
+    font-size: $font-size-small;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.2;
+    display: block;
+  }
+}
+
+.skillsStandalone {
+  padding-top: calc(2rem + 80px); // 네비게이션 높이 + 여백
 }
 
 @include respond-to(md) {
@@ -97,12 +197,35 @@
 
     &__title {
       font-size: $font-size-2xl;
-      margin-bottom: $spacing-xl;
+      margin-bottom: $spacing-sm;
+    }
+
+    &__description {
+      @include text-muted;
+      margin: 0 auto 3rem;
+      font-size: $font-size-small;
+      max-width: fit-content;
+      line-height: 1.5;
+    }
+
+    &__tabs {
+      gap: $spacing-sm;
+      margin-bottom: 3rem;
+    }
+
+    &__tab {
+      padding: $spacing-xs $spacing-md;
+      font-size: $font-size-small;
     }
 
     &__grid {
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: $spacing-lg;
+      max-width: 360px;
+      gap: $spacing-sm;
+    }
+
+    &__itemWrapper {
+      width: calc(50% - #{$spacing-sm * 0.5});
+      max-width: 100px;
     }
 
     &__imageWrapper {
@@ -112,8 +235,25 @@
     }
 
     &__name {
-      font-size: $font-size-small;
+      font-size: $font-size-base;
     }
+
+    &__tooltip {
+      width: max-content;
+      max-width: 250px;
+      padding: 0.4rem 0.65rem;
+      white-space: normal;
+    }
+
+    &__tooltipName {
+      font-size: $font-size-small;
+      margin-bottom: 0.2rem;
+    }
+
+    &__tooltipDescription {
+      font-size: 0.75rem;
+    }
+
   }
 }
 

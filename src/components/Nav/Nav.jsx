@@ -6,11 +6,11 @@ const Nav = () => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/skills', label: 'Skills' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/career', label: 'Career' },
-    { path: '/contact', label: 'Contact' },
+    { path: '/', label: '홈' },
+    { path: '/skills', label: '기술' },
+    { path: '/projects', label: '프로젝트' },
+    { path: '/career', label: '경험' },
+    { path: '/contact', label: '연락처' },
   ];
 
   return (

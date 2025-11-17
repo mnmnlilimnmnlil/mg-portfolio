@@ -14,6 +14,7 @@
   position: relative;
   overflow: hidden;
 
+  // Primary: 주요 액션 (이력서 다운로드, 제출 등)
   &__primary {
     background: linear-gradient(135deg, $color-red 0%, darken($color-red, 5%) 100%);
     color: $color-white;
@@ -43,27 +44,32 @@
     }
   }
 
+  // Secondary: 보조 액션 (더 보기, 뒤로가기 등)
   &__secondary {
     background: transparent;
-    color: $color-red;
-    border: 2px solid $color-red;
+    color: rgba($color-white, 0.9);
+    border: 1px solid rgba($color-red, 0.3);
 
     &:hover {
-      background: $color-red;
+      background: rgba($color-red, 0.1);
       color: $color-white;
+      border-color: rgba($color-red, 0.5);
       transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba($color-red, 0.2);
     }
   }
 
-  &__outline {
+  // Tertiary: 덜 중요한 액션/링크 (GitHub 방문, 사이트 방문 등)
+  &__tertiary {
     background: transparent;
-    color: $color-white;
-    border: 2px solid $color-white;
+    color: rgba($color-white, 0.7);
+    border: 1px solid rgba($color-white, 0.2);
 
     &:hover {
-      background: $color-white;
-      color: $color-black;
-      transform: translateY(-2px);
+      background: rgba($color-white, 0.05);
+      color: rgba($color-white, 0.9);
+      border-color: rgba($color-white, 0.3);
+      transform: translateY(-1px);
     }
   }
 }

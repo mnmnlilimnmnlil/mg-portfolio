@@ -1,12 +1,11 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import Button from '../../components/Button';
 import styles from './ProjectDetail.module.scss';
 
 const ProjectDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   // 임시 데이터 (나중에 실제 데이터로 교체)
   const project = {
@@ -27,16 +26,10 @@ const ProjectDetail = () => {
   return (
     <section className={styles.projectDetail}>
       <div className={styles.projectDetail__container}>
-        <Button
-          variant="outline"
-          onClick={() => navigate(-1)}
-          className={styles.projectDetail__backButton}
-        >
-          <FaArrowLeft /> 뒤로가기
-        </Button>
-
         <div className={styles.projectDetail__header}>
-          <h1 className={styles.projectDetail__title}>{project.title}</h1>
+          <h1 className={styles.projectDetail__title}>
+            <span className={styles.projectDetail__titleHighlight}>{project.title}</span>
+          </h1>
           <div className={styles.projectDetail__tech}>
             {project.tech.map((tech) => (
               <span key={tech} className={styles.projectDetail__techTag}>
@@ -47,24 +40,38 @@ const ProjectDetail = () => {
         </div>
 
         <div className={styles.projectDetail__links}>
-          <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.projectDetail__link}>
+          <Button
+            variant="tertiary"
+            href={project.link}
+            target="_blank"
+            className={styles.projectDetail__link}
+          >
             <FaExternalLinkAlt /> 사이트 방문
-          </a>
-          <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.projectDetail__link}>
+          </Button>
+          <Button
+            variant="tertiary"
+            href={project.github}
+            target="_blank"
+            className={styles.projectDetail__link}
+          >
             <FaGithub /> GitHub
-          </a>
+          </Button>
         </div>
 
         <div className={styles.projectDetail__content}>
           <div className={styles.projectDetail__section}>
-            <h2 className={styles.projectDetail__sectionTitle}>프로젝트 소개</h2>
+            <h2 className={styles.projectDetail__sectionTitle}>
+              프로젝트 소개
+            </h2>
             <p className={styles.projectDetail__description}>
               {project.description}
             </p>
           </div>
 
           <div className={styles.projectDetail__section}>
-            <h2 className={styles.projectDetail__sectionTitle}>포트폴리오 이미지</h2>
+            <h2 className={styles.projectDetail__sectionTitle}>
+              포트폴리오 이미지
+            </h2>
             <div className={styles.projectDetail__images}>
               {project.images.map((image, index) => (
                 <div key={index} className={styles.projectDetail__imageWrapper}>
@@ -82,7 +89,9 @@ const ProjectDetail = () => {
           </div>
 
           <div className={styles.projectDetail__section}>
-            <h2 className={styles.projectDetail__sectionTitle}>코드 리뷰</h2>
+            <h2 className={styles.projectDetail__sectionTitle}>
+              코드 리뷰
+            </h2>
             <div className={styles.projectDetail__codeReview}>
               <pre className={styles.projectDetail__codeText}>
                 {project.codeReview}

@@ -59,3 +59,217 @@
   background-clip: text;
 }
 
+// Red Border Box (카드, 섹션 박스 공통 스타일)
+@mixin red-border-box($bg-opacity: 0.5) {
+  @include card-background($bg-opacity);
+  border: 1px solid rgba($color-red, 0.25);
+  border-radius: 1rem;
+  @include smooth-transition(all);
+  
+  &:hover {
+    border-color: rgba($color-red, 0.4);
+    box-shadow: 0 0 20px rgba($color-red, 0.2);
+  }
+}
+
+// Red Tab Button (탭, 필터 버튼 공통 스타일)
+@mixin red-tab-button {
+  padding: $spacing-sm $spacing-lg;
+  background: transparent;
+  border: 1px solid rgba($color-red, 0.2);
+  border-radius: 2rem;
+  color: rgba($color-white, 0.7);
+  font-size: $font-size-base;
+  font-weight: 500;
+  cursor: pointer;
+  @include smooth-transition(all);
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    border-color: rgba($color-red, 0.5);
+    color: $color-white;
+    background: rgba($color-red, 0.15);
+  }
+  
+  &--active {
+    border-color: rgba($color-red, 0.5);
+    color: $color-white;
+    background: rgba($color-red, 0.15);
+    box-shadow: 0 0 15px rgba($color-red, 0.3);
+  }
+}
+
+// Red Input Field (입력 필드 공통 스타일)
+@mixin red-input-field {
+  padding: $spacing-sm;
+  background: rgba($color-black, 0.5);
+  border: 1px solid rgba($color-red, 0.25);
+  border-radius: 0.5rem;
+  color: $color-white;
+  font-size: $font-size-base;
+  font-family: $font-family-primary;
+  @include smooth-transition(all);
+
+  &:focus {
+    outline: none;
+    border-color: rgba($color-red, 0.6);
+    box-shadow: 0 0 20px rgba($color-red, 0.3);
+  }
+
+  &::placeholder {
+    color: rgba($color-white, 0.5);
+  }
+}
+
+// Red Title Highlight (타이틀 하이라이트 공통 스타일)
+@mixin red-title-highlight {
+  color: $color-red;
+  font-weight: 700;
+  display: inline-block;
+}
+
+// Red Gradient Line (그라데이션 라인 공통 스타일)
+@mixin red-gradient-line($position: top, $width: 100%, $height: 3px) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    @if $position == top {
+      top: 0;
+      left: 0;
+      right: 0;
+      height: $height;
+      background: linear-gradient(90deg, transparent, $color-red, transparent);
+      border-radius: 1rem 1rem 0 0;
+    } @else if $position == left {
+      top: 0;
+      left: 0;
+      width: $width;
+      height: 100%;
+      background: linear-gradient(180deg, $color-red, rgba($color-red, 0.3), transparent);
+      border-radius: 1rem 0 0 1rem;
+    } @else if $position == center {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: $width;
+      height: $height;
+      background: linear-gradient(90deg, transparent, $color-red, transparent);
+      border-radius: 0 0 2px 2px;
+    }
+    opacity: 0.6;
+  }
+}
+
+// Red Image Wrapper (이미지 래퍼 공통 스타일)
+@mixin red-image-wrapper($bg-opacity: 0.5) {
+  @include card-background($bg-opacity);
+  border: 1px solid rgba($color-red, 0.25);
+  border-radius: 1rem;
+  @include smooth-transition(all);
+  position: relative;
+
+  &:hover {
+    border-color: rgba($color-red, 0.6);
+    box-shadow: 0 0 25px rgba($color-red, 0.4);
+    background: rgba($color-red, 0.15);
+  }
+}
+
+// Red Label Indicator (라벨 인디케이터 공통 스타일)
+@mixin red-label-indicator {
+  // 보더 제거
+}
+
+// Red Tech Tag (기술 태그 공통 스타일)
+@mixin red-tech-tag {
+  padding: $spacing-xs $spacing-md;
+  background: rgba($color-red, 0.1);
+  border: 1px solid rgba($color-red, 0.3);
+  border-radius: 20px;
+  color: rgba($color-white, 0.9);
+  font-size: $font-size-small;
+  font-weight: 500;
+  @include smooth-transition(all);
+  
+  &:hover {
+    background: rgba($color-red, 0.2);
+    border-color: rgba($color-red, 0.5);
+  }
+}
+
+// Red Link Button (링크 버튼 공통 스타일)
+@mixin red-link-button {
+  padding: $spacing-xs $spacing-md;
+  background: rgba($color-red, 0.1);
+  border: 1px solid rgba($color-red, 0.4);
+  border-radius: 20px;
+  color: $color-red;
+  text-decoration: none;
+  display: inline-block;
+  @include smooth-transition(all);
+  font-weight: 600;
+
+  &:hover {
+    background: rgba($color-red, 0.2);
+    color: $color-white;
+    border-color: $color-red;
+    box-shadow: 0 0 20px rgba($color-red, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+// Section Base (섹션 기본 스타일)
+@mixin section-base {
+  min-height: 100vh;
+  padding: $spacing-2xl $spacing-xl;
+  background: transparent;
+  position: relative;
+}
+
+// Section Container (섹션 컨테이너 공통 스타일)
+@mixin section-container($max-width: 1200px) {
+  max-width: $max-width;
+  width: 100%;
+  margin: 0 auto;
+}
+
+// Section Title (섹션 타이틀 공통 스타일)
+@mixin section-title {
+  font-size: $font-size-3xl;
+  font-weight: 700;
+  color: $color-white;
+  margin-top: $spacing-2xl;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+// Card Background (카드 배경 공통 스타일)
+@mixin card-background($opacity: 0.5) {
+  background: rgba($color-black, $opacity);
+}
+
+// Text Styles (텍스트 스타일 통일)
+// Important: 중요한 텍스트 (타이틀, 강조 텍스트)
+@mixin text-important {
+  color: $color-white;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+// Normal: 일반 텍스트 (설명, 본문)
+@mixin text-normal {
+  color: rgba($color-white, 0.9);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+// Muted: 덜 중요한 텍스트 (부가 정보, 플레이스홀더)
+@mixin text-muted {
+  color: rgba($color-white, 0.6);
+  font-weight: 400;
+  line-height: 1.5;
+}
+

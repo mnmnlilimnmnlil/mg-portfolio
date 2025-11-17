@@ -11,7 +11,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   z-index: $z-index-nav;
   padding: $spacing-xs $spacing-md;
-  border: 1px solid rgba($color-red, 0.3);
+  border: 1px solid rgba($color-white, 0.2);
 
   &__container {
     display: flex;
@@ -34,15 +34,27 @@
     position: relative;
 
     &:hover {
-      color: $color-red;
+      color: $color-white;
       background: rgba($color-red, 0.1);
       transform: translateY(-2px);
     }
 
     &Active {
-      color: $color-red;
+      color: $color-white;
       background: rgba($color-red, 0.2);
-      @include red-glow;
+      box-shadow: 0 0 15px rgba($color-red, 0.3);
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 2px;
+        background: $color-red;
+        border-radius: 2px;
+      }
     }
   }
 }

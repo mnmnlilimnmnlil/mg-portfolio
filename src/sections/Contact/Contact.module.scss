@@ -2,29 +2,87 @@
 @import '../../styles/mixins';
 
 .contact {
-  min-height: 100vh;
+  @include section-base;
   @include flex-center;
-  padding: $spacing-2xl $spacing-xl;
-  background: $color-black;
-  position: relative;
 
   &__container {
-    max-width: 600px;
-    width: 100%;
+    @include section-container(600px);
     text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    @include smooth-transition(all);
+    transition-duration: 0.8s;
+  }
+
+  &__containerVisible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   &__title {
-    font-size: $font-size-3xl;
-    font-weight: 700;
-    color: $color-red;
-    margin-bottom: $spacing-xl;
+    @include section-title;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__titleHighlight {
+    @include red-title-highlight;
+  }
+
+  &__description {
+    @include text-muted;
+    text-align: center;
+    margin: 0 auto 3rem;
+    font-size: $font-size-base;
+    max-width: fit-content;
+    line-height: 1.5;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: $spacing-xl;
+    margin-bottom: 3rem;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  &__infoItem {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-xs $spacing-md;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    @include smooth-transition(all);
+    border-bottom: 1px solid rgba($color-white, 0.1);
+
+    &:hover {
+      border-bottom-color: rgba($color-red, 0.5);
+    }
+  }
+
+  &__infoLabel {
+    @include text-muted;
+    font-size: $font-size-small;
+    font-weight: 500;
+  }
+
+  &__infoValue {
+    @include text-normal;
+    font-size: $font-size-base;
+    color: rgba($color-white, 0.9);
+    font-weight: 400;
+
+    .contact__infoItem:hover & {
+      color: $color-red;
+    }
   }
 
   &__formWrapper {
-    background: rgba($color-black, 0.9);
-    border: 1px solid rgba($color-red, 0.3);
-    border-radius: 1rem;
+    @include red-border-box(0.9);
+    @include red-gradient-line(top);
     padding: $spacing-xl;
     margin-bottom: $spacing-xl;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -42,31 +100,13 @@
     text-align: left;
   }
 
-  &__label {
-    color: $color-white;
-    margin-bottom: $spacing-xs;
-    font-weight: 500;
-  }
-
   &__input,
   &__textarea {
-    padding: $spacing-sm;
-    background: rgba($color-black, 0.5);
-    border: 1px solid rgba($color-red, 0.3);
-    border-radius: 0.5rem;
-    color: $color-white;
-    font-size: $font-size-base;
-    font-family: $font-family-primary;
-    @include smooth-transition(all);
-
-    &:focus {
-      outline: none;
-      border-color: $color-red;
-      @include red-glow;
-    }
-
+    @include red-input-field;
+    
     &::placeholder {
       color: rgba($color-white, 0.5);
+      opacity: 1;
     }
   }
 
@@ -81,10 +121,19 @@
   }
 
   &__footer {
-    color: rgba($color-white, 0.7);
+    @include text-muted;
     font-size: $font-size-large;
     font-style: italic;
   }
+
+  &__footerHighlight {
+    color: $color-red;
+    font-weight: 600;
+  }
+}
+
+.contactStandalone {
+  padding-top: calc(2rem + 80px); // 네비게이션 높이 + 여백
 }
 
 @include respond-to(md) {
@@ -93,6 +142,27 @@
 
     &__title {
       font-size: $font-size-2xl;
+      margin-bottom: $spacing-sm;
+    }
+
+    &__description {
+      @include text-muted;
+      margin: 0 auto 3rem;
+      font-size: $font-size-small;
+      max-width: fit-content;
+      line-height: 1.5;
+    }
+
+    &__info {
+      flex-direction: row;
+      gap: $spacing-md;
+      margin-bottom: 2rem;
+      flex-wrap: nowrap;
+    }
+
+    &__infoItem {
+      justify-content: center;
+      white-space: nowrap;
     }
 
     &__formWrapper {

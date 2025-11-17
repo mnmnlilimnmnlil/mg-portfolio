@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import Button from '../../components/Button';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import styles from './Contact.module.scss';
 
 const Contact = () => {
+  const location = useLocation();
+  const isStandalonePage = location.pathname === '/contact';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -42,17 +46,32 @@ const Contact = () => {
     });
   };
 
+  const [containerRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
+
   return (
-    <section className={styles.contact} id="contact">
-      <div className={styles.contact__container}>
+    <section className={`${styles.contact} ${isStandalonePage ? styles.contactStandalone : ''}`} id="contact">
+      <div 
+        ref={containerRef}
+        className={`${styles.contact__container} ${isVisible ? styles.contact__containerVisible : ''}`}
+      >
         <h2 className={styles.contact__title}>
-          Contact
+          <span className={styles.contact__titleHighlight}>연락처</span>
         </h2>
+        
+        <div className={styles.contact__info}>
+          <a href="tel:01084821244" className={styles.contact__infoItem}>
+            <span className={styles.contact__infoLabel}>연락처</span>
+            <span className={styles.contact__infoValue}>010 8482 1244</span>
+          </a>
+          <a href="mailto:dbullssg123@naver.com" className={styles.contact__infoItem}>
+            <span className={styles.contact__infoLabel}>이메일</span>
+            <span className={styles.contact__infoValue}>dbullssg123@naver.com</span>
+          </a>
+        </div>
         
         <div className={styles.contact__formWrapper}>
           <form className={styles.contact__form} onSubmit={handleSubmit}>
             <div className={styles.contact__field}>
-              <label htmlFor="name" className={styles.contact__label}>Name</label>
               <input
                 type="text"
                 id="name"
@@ -60,12 +79,12 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 className={styles.contact__input}
+                placeholder="이름"
                 required
               />
             </div>
             
             <div className={styles.contact__field}>
-              <label htmlFor="email" className={styles.contact__label}>Email</label>
               <input
                 type="email"
                 id="email"
@@ -73,31 +92,32 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className={styles.contact__input}
+                placeholder="이메일"
                 required
               />
             </div>
             
             <div className={styles.contact__field}>
-              <label htmlFor="message" className={styles.contact__label}>Message</label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 className={styles.contact__textarea}
+                placeholder="메시지"
                 rows="5"
                 required
               />
             </div>
             
             <Button type="submit" variant="primary" className={styles.contact__button}>
-              Send Message
+              보내기
             </Button>
           </form>
         </div>
         
         <p className={styles.contact__footer}>
-          감사합니다. 함께 성장하고 싶습니다.
+          무엇이든 해내는 모습 보여드리겠습니다. 감사합니다.
         </p>
       </div>
     </section>

@@ -2,45 +2,135 @@
 @import '../../styles/mixins';
 
 .career {
-  min-height: 100vh;
-  padding: $spacing-2xl $spacing-xl;
-  background: $color-black;
-  position: relative;
+  @include section-base;
 
   &__container {
-    max-width: 1000px;
-    margin: 0 auto;
+    @include section-container(1000px);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    @include smooth-transition(all);
+    transition-duration: 0.8s;
+  }
+
+  &__containerVisible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   &__title {
-    font-size: $font-size-3xl;
-    font-weight: 700;
-    color: $color-red;
-    margin-bottom: $spacing-2xl;
+    @include section-title;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__titleHighlight {
+    @include red-title-highlight;
+  }
+
+  &__description {
+    @include text-muted;
     text-align: center;
+    margin: 0 auto 4rem;
+    font-size: $font-size-base;
+    max-width: fit-content;
+    line-height: 1.5;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__item {
+    @include red-border-box(0.5);
+    padding: $spacing-xl;
+    @include smooth-transition(all);
+    text-align: left;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba($color-red, 0.25);
+    }
+  }
+
+  &__itemHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-md;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+  }
+
+  &__itemType {
+    @include text-important;
+    font-size: $font-size-small;
+    padding: 0.35rem $spacing-sm;
+    background: rgba($color-red, 0.15);
+    border: 1px solid rgba($color-red, 0.3);
+    border-radius: 1rem;
+    color: $color-red;
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  &__itemDate {
+    @include text-muted;
+    font-size: $font-size-small;
+    white-space: nowrap;
+  }
+
+  &__itemTitle {
+    @include text-important;
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-sm;
+    text-align: left;
+    line-height: 1.3;
+  }
+
+  &__itemOrganization {
+    @include text-normal;
+    font-size: $font-size-base;
+    margin-bottom: $spacing-md;
+    color: rgba($color-white, 0.7);
+    text-align: left;
+  }
+
+  &__itemDescription {
+    @include text-normal;
+    font-size: $font-size-base;
+    line-height: 1.7;
+    margin-top: $spacing-md;
+    color: rgba($color-white, 0.9);
+    text-align: left;
   }
 
   &__info {
+    @include red-border-box(0.5);
+    @include red-gradient-line(center, 80px);
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
     padding: $spacing-2xl;
-    background: rgba($color-black, 0.5);
-    border: 1px solid rgba($color-red, 0.3);
-    border-radius: 1rem;
   }
 
   &__placeholder {
+    @include text-normal;
     font-size: $font-size-xl;
-    color: rgba($color-white, 0.7);
     margin-bottom: $spacing-md;
   }
 
   &__note {
+    @include text-muted;
     font-size: $font-size-base;
-    color: rgba($color-white, 0.5);
-    line-height: 1.6;
   }
+}
+
+.careerStandalone {
+  padding-top: calc(2rem + 80px); // 네비게이션 높이 + 여백
 }
 
 @include respond-to(md) {
@@ -49,6 +139,31 @@
 
     &__title {
       font-size: $font-size-2xl;
+      margin-bottom: $spacing-sm;
+    }
+
+    &__description {
+      @include text-muted;
+      margin: 0 auto 3rem;
+      font-size: $font-size-small;
+      max-width: fit-content;
+      line-height: 1.5;
+    }
+
+    &__item {
+      padding: $spacing-lg;
+    }
+
+    &__itemTitle {
+      font-size: $font-size-large;
+    }
+
+    &__itemOrganization {
+      font-size: $font-size-small;
+    }
+
+    &__itemDescription {
+      font-size: $font-size-small;
     }
 
     &__info {
