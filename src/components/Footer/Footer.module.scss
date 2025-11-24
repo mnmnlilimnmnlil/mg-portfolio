@@ -18,3 +18,14 @@
   }
 }
 
+// 모바일 스타일 (768px 미만)
+@media (max-width: 767px) {
+  .footer {
+    padding: $spacing-lg $spacing-md;
+
+    &__text {
+      font-size: 0.75rem;
+    }
+  }
+}
+

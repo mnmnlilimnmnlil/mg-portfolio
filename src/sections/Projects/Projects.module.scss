@@ -162,3 +162,35 @@
   }
 }
 
+// 모바일 스타일 (768px 미만)
+@media (max-width: 767px) {
+  .projects {
+    padding: $spacing-xl $spacing-md;
+
+    &__title {
+      font-size: $font-size-xl;
+    }
+
+    &__description {
+      @include text-muted;
+      margin: 0 auto 3rem;
+      font-size: $font-size-small;
+      max-width: fit-content;
+      line-height: 1.5;
+    }
+
+    &__cardTitle {
+      font-size: $font-size-large;
+    }
+
+    &__cardDescription {
+      font-size: $font-size-small;
+    }
+
+    &__techTag {
+      font-size: 0.75rem;
+      padding: 0.3rem $spacing-sm;
+    }
+  }
+}
+

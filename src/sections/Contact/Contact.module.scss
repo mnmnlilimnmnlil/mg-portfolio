@@ -171,3 +171,39 @@
   }
 }
 
+// 모바일 스타일 (768px 미만)
+@media (max-width: 767px) {
+  .contact {
+    padding: $spacing-xl $spacing-md;
+
+    &__title {
+      font-size: $font-size-xl;
+    }
+
+    &__description {
+      @include text-muted;
+      margin: 0 auto 3rem;
+      font-size: $font-size-small;
+      max-width: fit-content;
+      line-height: 1.5;
+    }
+
+    &__infoLabel {
+      font-size: 0.75rem;
+    }
+
+    &__infoValue {
+      font-size: 0.875rem;
+    }
+
+    &__input,
+    &__textarea {
+      font-size: $font-size-small;
+    }
+
+    &__footer {
+      font-size: $font-size-base;
+    }
+  }
+}
+

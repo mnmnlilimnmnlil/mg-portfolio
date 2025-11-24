@@ -75,3 +75,42 @@
   }
 }
 
+// 모바일 스타일 (768px 미만)
+@media (max-width: 767px) {
+  .nav {
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    max-width: 500px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 30px;
+
+    &__container {
+      width: 100%;
+    }
+
+    &__links {
+      gap: 0.25rem;
+      width: 100%;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+
+    &__link {
+      font-size: 0.7rem;
+      padding: 0.4rem 0.5rem;
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}
+

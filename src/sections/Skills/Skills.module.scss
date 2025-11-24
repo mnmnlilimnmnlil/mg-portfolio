@@ -257,3 +257,45 @@
   }
 }
 
+// 모바일 스타일 (768px 미만)
+@media (max-width: 767px) {
+  .skills {
+    padding: $spacing-xl $spacing-md;
+
+    &__title {
+      font-size: $font-size-xl;
+    }
+
+    &__description {
+      @include text-muted;
+      margin: 0 auto 3rem;
+      font-size: $font-size-small;
+      max-width: fit-content;
+      line-height: 1.5;
+    }
+
+    &__tab {
+      font-size: 0.75rem;
+      padding: 0.4rem $spacing-sm;
+    }
+
+    &__name {
+      font-size: $font-size-small;
+    }
+
+    &__tooltip {
+      max-width: 200px;
+      padding: 0.35rem 0.6rem;
+      font-size: 0.75rem;
+    }
+
+    &__tooltipName {
+      font-size: 0.75rem;
+    }
+
+    &__tooltipDescription {
+      font-size: 0.7rem;
+    }
+  }
+}
+

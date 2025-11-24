@@ -98,3 +98,31 @@
   }
 }
 
+// 모바일 스타일 (768px 미만)
+@media (max-width: 767px) {
+  .home {
+    padding: $spacing-lg $spacing-md;
+
+    &__content {
+      padding: $spacing-lg $spacing-md;
+    }
+
+    &__title {
+      font-size: $font-size-xl;
+    }
+
+    &__descriptionText {
+      font-size: $font-size-small;
+    }
+
+    &__button {
+      font-size: $font-size-small;
+      
+      svg {
+        width: 0.875rem;
+        height: 0.875rem;
+      }
+    }
+  }
+}
+

@@ -3,7 +3,6 @@ import { FaGithub, FaFileDownload } from 'react-icons/fa';
 import Button from '../../components/Button';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import styles from './Home.module.scss';
-
 // 이력서 import
 import resumeFile from '../../assets/resume/박민규_이력서_자기소개서.pdf';
 
@@ -39,7 +38,7 @@ const Home = () => {
           
           <div className={styles.home__description}>
             <p className={styles.home__descriptionText}>
-              문제를 끝까지 해결하며, 팀과 함께 최선의 답을 찾아가는 걸 중요하게 생각합니다. 현재 프론트엔드 전반을 이해하고 있으며,<br />서버와 클라이언트의 상호작용까지 확장해 풀스택 역량을 갖춘 개발자로 성장하고 싶습니다.
+              문제를 끝까지 해결하며, 팀과함께 최선의 답을 찾아가는 걸 중요하게 생각합니다. 현재 프론트 엔드 전반을 이해하고 있습니다.<br />서버와 클라이언트의 상호작용까지 확장해 풀스택 역량을 갖춘 개발자로 성장하고 싶습니다.
             </p>
           </div>
           

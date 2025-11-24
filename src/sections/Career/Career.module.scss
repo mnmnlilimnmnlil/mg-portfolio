@@ -176,3 +176,42 @@
   }
 }
 
+// 모바일 스타일 (768px 미만)
+@media (max-width: 767px) {
+  .career {
+    padding: $spacing-xl $spacing-md;
+
+    &__title {
+      font-size: $font-size-xl;
+    }
+
+    &__description {
+      @include text-muted;
+      margin: 0 auto 3rem;
+      font-size: $font-size-small;
+      max-width: fit-content;
+      line-height: 1.5;
+    }
+
+    &__itemTitle {
+      font-size: $font-size-base;
+    }
+
+    &__itemOrganization {
+      font-size: 0.875rem;
+    }
+
+    &__itemDescription {
+      font-size: 0.875rem;
+    }
+
+    &__itemType {
+      font-size: 0.75rem;
+    }
+
+    &__itemDate {
+      font-size: 0.75rem;
+    }
+  }
+}
+

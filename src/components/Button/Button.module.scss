@@ -74,3 +74,11 @@
   }
 }
 
+// 모바일 스타일 (768px 미만)
+@media (max-width: 767px) {
+  .button {
+    font-size: $font-size-small;
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
