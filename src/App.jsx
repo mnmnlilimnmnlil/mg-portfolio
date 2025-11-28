@@ -4,6 +4,7 @@ import { RecoilRoot } from 'recoil';
 import Lenis from 'lenis';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import LiquidEther from './components/LiquidEther/LiquidEther';
 import Home from './sections/Home';
 import Skills from './sections/Skills';
@@ -52,35 +53,72 @@ function AppContent() {
     const prevPath = prevLocationRef.current;
     const currentPath = location.pathname;
     
-    // 프로젝트 상세 페이지에서 나올 때 프로젝트 ID 저장
-    if (prevPath.startsWith('/projects/') && !currentPath.startsWith('/projects/')) {
-      const projectId = prevPath.split('/projects/')[1];
+    // 프로젝트 상세 페이지로 진입할 때: 진입 전 스크롤 위치 저장 후 즉시 최상단으로 이동
+    if (!prevPath.startsWith('/projects/') && currentPath.startsWith('/projects/')) {
+      // 진입 전 스크롤 위치 저장
+      const getScrollPosition = () => {
+        if (window.lenisInstance && window.lenisInstance.scroll !== undefined) {
+          return window.lenisInstance.scroll;
+        }
+        return window.pageYOffset || document.documentElement.scrollTop || window.scrollY;
+      };
+      
+      const scrollY = getScrollPosition();
+      const projectId = currentPath.split('/projects/')[1];
       if (projectId) {
-        sessionStorage.setItem('scrollToProject', projectId);
+        sessionStorage.setItem(`projectScroll_${projectId}`, scrollY.toString());
         sessionStorage.setItem('fromProjectDetail', 'true');
       }
+      
+      // 즉시 최상단으로 이동 (애니메이션 없이)
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
     }
-
-    // 프로젝트 목록 페이지나 홈 페이지로 돌아온 경우는 Projects 컴포넌트에서 처리
-    if ((currentPath === '/projects' || currentPath === '/') && sessionStorage.getItem('scrollToProject')) {
-      prevLocationRef.current = currentPath;
-      return;
+    
+    // 프로젝트 상세 페이지에서 나올 때 저장된 스크롤 위치로 복원
+    if (prevPath.startsWith('/projects/') && !currentPath.startsWith('/projects/')) {
+      const projectId = prevPath.split('/projects/')[1];
+      if (projectId && (currentPath === '/projects' || currentPath === '/')) {
+        const savedScroll = sessionStorage.getItem(`projectScroll_${projectId}`);
+        
+        if (savedScroll) {
+          const scrollPosition = parseInt(savedScroll, 10);
+          
+          // Projects 컴포넌트가 렌더링될 때까지 기다린 후 스크롤
+          setTimeout(() => {
+            const lenisInstance = window.lenisInstance;
+            if (lenisInstance) {
+              lenisInstance.scrollTo(scrollPosition, {
+                immediate: false,
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+              });
+            } else {
+              window.scrollTo({
+                top: scrollPosition,
+                behavior: 'smooth'
+              });
+            }
+          }, 400);
+        }
+      }
     }
 
     // 다른 페이지로 이동한 경우 상단으로 스크롤
     if (prevPath !== currentPath) {
-      // 프로젝트 상세 페이지로 이동하는 경우가 아니면 플래그 제거
+      // 프로젝트 상세 페이지로 이동하는 경우는 위에서 처리
       if (!currentPath.startsWith('/projects/')) {
-        sessionStorage.removeItem('fromProjectDetail');
+        setTimeout(() => {
+          if (lenisRef.current) {
+            lenisRef.current.scrollTo(0, { immediate: false });
+          } else {
+            window.scrollTo(0, 0);
+          }
+        }, 100);
       }
-      
-      setTimeout(() => {
-        if (lenisRef.current) {
-          lenisRef.current.scrollTo(0, { immediate: false });
-        } else {
-          window.scrollTo(0, 0);
-        }
-      }, 100);
     }
 
     prevLocationRef.current = currentPath;
@@ -108,6 +146,7 @@ function AppContent() {
         />
       </div>
       <Nav />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={
           <>

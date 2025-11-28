@@ -128,61 +128,12 @@ const Projects = () => {
     prevShowAllRef.current = showAll;
   }, [showAll]);
 
+  // 초기 마운트 처리
   useEffect(() => {
-    // 초기 마운트 시 sessionStorage 정리
     if (isInitialMount.current) {
-      const scrollToProjectId = sessionStorage.getItem('scrollToProject');
-      const fromProjectDetail = sessionStorage.getItem('fromProjectDetail');
-      
-      // 초기 로드 시 남아있는 값 정리 (프로젝트 상세 페이지에서 온 것이 아닌 경우)
-      if (scrollToProjectId && fromProjectDetail !== 'true') {
-        sessionStorage.removeItem('scrollToProject');
-        sessionStorage.removeItem('fromProjectDetail');
-      }
-      
       isInitialMount.current = false;
-      return;
     }
-
-    // 프로젝트 상세 페이지에서 돌아온 경우에만 해당 프로젝트로 스크롤
-    const scrollToProjectId = sessionStorage.getItem('scrollToProject');
-    const fromProjectDetail = sessionStorage.getItem('fromProjectDetail') === 'true';
-    
-    if (scrollToProjectId && fromProjectDetail) {
-      sessionStorage.removeItem('scrollToProject');
-      sessionStorage.removeItem('fromProjectDetail');
-      
-      setTimeout(() => {
-        const projectElement = projectRefs.current[scrollToProjectId];
-        if (projectElement) {
-          const rect = projectElement.getBoundingClientRect();
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          // 카드 박스의 상단으로 딱 떨어지도록 스크롤
-          const elementTop = rect.top + scrollTop;
-          const navHeight = 80;
-          const offset = navHeight + 20;
-          const targetPosition = elementTop - offset;
-          
-          // Lenis 인스턴스 사용 (전역에서 접근)
-          const lenisInstance = window.lenisInstance;
-          if (lenisInstance) {
-            // Lenis의 scrollTo 사용 - 사용자 스크롤과 충돌하지 않음
-            lenisInstance.scrollTo(targetPosition, {
-              immediate: false,
-              duration: 1.2,
-              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            });
-          } else {
-            // Lenis가 없을 경우 기본 스크롤 사용
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
-          }
-        }
-      }, 400);
-    }
-  }, [location.pathname]);
+  }, []);
 
   return (
     <section className={`${styles.projects} ${isStandalonePage ? styles.projectsStandalone : ''}`} id="projects">
