@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import Logo from '../Logo';
 import styles from './Nav.module.scss';
 
 const Nav = () => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', label: '홈' },
     { path: '/skills', label: '기술' },
     { path: '/projects', label: '프로젝트' },
     { path: '/career', label: '경험' },
@@ -16,6 +16,7 @@ const Nav = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.nav__container}>
+        <Logo size={32} animated={true} />
         <div className={styles.nav__links}>
           {navItems.map((item) => (
             <Link
