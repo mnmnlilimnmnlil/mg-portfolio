@@ -23,11 +23,11 @@ const Projects = () => {
   const allProjects = [
     {
       id: 1,
-      title: 'Project 1',
-      description: '프로젝트 설명입니다.',
-      tech: ['React', 'TypeScript', 'SCSS'],
+      title: '차세대 교정 업무 시스템 OK',
+      description: `교도관의 업무를 돕는 차세대 교정업무 시스템입니다. React 기반의 현대적인 아키텍처와 성능 최적화 기법을 적용했습니다.`,
+      tech: ['React', 'javascript', 'SCSS', 'Express', 'Axios', 'OpenAI API', 'GSAP', ],
       image: project1Image,
-      link: '#',
+      link: 'https://mnmnlilimnmnlil.github.io/OK',
       github: '#',
     },
     {

@@ -63,7 +63,6 @@
 
   &__section {
     @include red-border-box(0.5);
-    @include red-gradient-line(left, 4px);
     padding: $spacing-xl;
   }
 
@@ -72,6 +71,7 @@
     font-weight: 600;
     color: $color-white;
     margin-bottom: $spacing-lg;
+    text-align: left;
   }
 
   &__sectionTitleHighlight {
@@ -82,6 +82,105 @@
     @include text-normal;
     font-size: $font-size-base;
     white-space: pre-line;
+    text-align: left;
+  }
+
+  &__introduction {
+    @include text-normal;
+    font-size: $font-size-base;
+    line-height: 1.6;
+    text-align: left;
+
+    h3 {
+      @include text-important;
+      font-size: $font-size-xl;
+      font-weight: 700;
+      margin-top: $spacing-md;
+      margin-bottom: $spacing-xs;
+      color: $color-red;
+      text-align: left;
+      line-height: 1.4;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    h4 {
+      @include text-important;
+      font-size: $font-size-large;
+      font-weight: 600;
+      margin-top: $spacing-sm;
+      margin-bottom: 0.25rem;
+      color: rgba($color-white, 0.95);
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    p {
+      text-align: left;
+      margin-bottom: $spacing-xs;
+      line-height: 1.6;
+    }
+
+    strong {
+      color: $color-white;
+      font-weight: 700;
+    }
+
+    code {
+      background: rgba($color-red, 0.15);
+      border: 1px solid rgba($color-red, 0.3);
+      border-radius: 0.25rem;
+      padding: 0.15rem 0.4rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      color: rgba($color-white, 0.9);
+    }
+
+    pre {
+      background: rgba($color-black, 0.6);
+      border: 1px solid rgba($color-red, 0.3);
+      border-radius: 0.5rem;
+      padding: $spacing-md;
+      overflow-x: auto;
+      margin: $spacing-xs 0;
+      text-align: left;
+
+      code {
+        background: transparent;
+        border: none;
+        padding: 0;
+        color: rgba($color-white, 0.85);
+        font-size: $font-size-small;
+        line-height: 1.5;
+        white-space: pre;
+        display: block;
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: $spacing-xs 0;
+      text-align: left;
+
+      li {
+        padding-left: $spacing-md;
+        position: relative;
+        margin-bottom: 0.15rem;
+        text-align: left;
+        line-height: 1.5;
+
+        &::before {
+          content: '•';
+          position: absolute;
+          left: 0;
+          color: $color-red;
+          font-weight: bold;
+        }
+      }
+    }
   }
 
   &__images {
@@ -104,19 +203,6 @@
     object-fit: cover;
   }
 
-  &__codeReview {
-    @include red-border-box(0.8);
-    @include red-gradient-line(left, 3px);
-    border-radius: 0.5rem;
-    padding: $spacing-lg;
-    overflow-x: auto;
-    
-    &::before {
-      background: $color-red;
-      border-radius: 0.5rem 0 0 0.5rem;
-    }
-  }
-
   &__codeText {
     @include text-normal;
     font-family: 'Courier New', monospace;
@@ -124,6 +210,161 @@
     margin: 0;
     white-space: pre-wrap;
     word-wrap: break-word;
+  }
+
+  &__codeReview {
+    @include text-normal;
+    font-size: $font-size-base;
+    line-height: 1.6;
+    text-align: left;
+
+    h3 {
+      @include text-important;
+      font-size: $font-size-xl;
+      font-weight: 700;
+      margin-top: $spacing-md;
+      margin-bottom: $spacing-xs;
+      color: $color-red;
+      text-align: left;
+      line-height: 1.4;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    h4 {
+      @include text-important;
+      font-size: $font-size-large;
+      font-weight: 600;
+      margin-top: $spacing-sm;
+      margin-bottom: 0.25rem;
+      color: rgba($color-white, 0.95);
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    p {
+      text-align: left;
+      margin-bottom: $spacing-xs;
+      line-height: 1.6;
+    }
+
+    strong {
+      color: $color-white;
+      font-weight: 700;
+    }
+
+    code {
+      background: rgba($color-red, 0.15);
+      border: 1px solid rgba($color-red, 0.3);
+      border-radius: 0.25rem;
+      padding: 0.15rem 0.4rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      color: rgba($color-white, 0.9);
+    }
+
+    pre {
+      background: rgba($color-black, 0.6);
+      border: 1px solid rgba($color-red, 0.3);
+      border-radius: 0.5rem;
+      padding: $spacing-md;
+      overflow-x: auto;
+      margin: $spacing-xs 0;
+      text-align: left;
+
+      code {
+        background: transparent;
+        border: none;
+        padding: 0;
+        color: rgba($color-white, 0.85);
+        font-size: $font-size-small;
+        line-height: 1.5;
+        white-space: pre;
+        display: block;
+      }
+    }
+
+    ul, ol {
+      list-style: none;
+      padding-left: 0;
+      margin: $spacing-xs 0;
+      text-align: left;
+
+      li {
+        padding-left: $spacing-md;
+        position: relative;
+        margin-bottom: 0.15rem;
+        line-height: 1.5;
+        text-align: left;
+
+        &::before {
+          content: '•';
+          position: absolute;
+          left: 0;
+          color: $color-red;
+          font-weight: bold;
+        }
+      }
+    }
+
+    ol {
+      counter-reset: list-counter;
+
+      li {
+        counter-increment: list-counter;
+        padding-left: 2rem;
+
+        &::before {
+          content: counter(list-counter) '.';
+          left: 0;
+          color: $color-red;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  &__introduction {
+    ul, ol {
+      list-style: none;
+      padding-left: 0;
+      margin: $spacing-sm 0;
+      text-align: left;
+
+      li {
+        padding-left: $spacing-lg;
+        position: relative;
+        margin-bottom: 0.25rem;
+        line-height: 1.6;
+        text-align: left;
+
+        &::before {
+          content: '•';
+          position: absolute;
+          left: 0;
+          color: $color-red;
+          font-weight: bold;
+        }
+      }
+    }
+
+    ol {
+      counter-reset: list-counter;
+
+      li {
+        counter-increment: list-counter;
+        padding-left: 2rem;
+
+        &::before {
+          content: counter(list-counter) '.';
+          left: 0;
+          color: $color-red;
+          font-weight: bold;
+        }
+      }
+    }
   }
 }
 

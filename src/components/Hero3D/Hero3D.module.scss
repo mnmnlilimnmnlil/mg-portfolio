@@ -1,0 +1,62 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.hero3D {
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+  
+  // 최신 트렌드 그라데이션 배경 - 웹사이트 배경과 자연스럽게
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(230, 57, 70, 0.03) 0%,
+      transparent 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+  
+  canvas {
+    position: relative;
+    z-index: 1;
+    background: transparent !important;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@include respond-to(md) {
+  .hero3D {
+    height: 80vh;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero3D {
+    height: 60vh;
+    min-height: 400px;
+  }
+}
+

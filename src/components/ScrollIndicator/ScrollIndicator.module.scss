@@ -1,0 +1,100 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.scrollIndicator {
+  position: relative;
+  margin-top: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 10;
+  opacity: 0.6;
+  @include smooth-transition(all);
+  animation: scrollPulse 2s ease-in-out infinite;
+  width: 100%;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &__mouse {
+    width: 24px;
+    height: 40px;
+    border: 2px solid rgba($color-white, 0.5);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+  }
+
+  &__wheel {
+    width: 4px;
+    height: 8px;
+    background: rgba($color-white, 0.7);
+    border-radius: 2px;
+    animation: scrollWheel 1.5s ease-in-out infinite;
+  }
+
+  &__arrow {
+    color: rgba($color-white, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: scrollArrow 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes scrollWheel {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0.3;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes scrollArrow {
+  0% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0.3;
+    transform: translateY(8px);
+  }
+}
+
+@include respond-to(md) {
+  .scrollIndicator {
+    // 반응형에서도 정중앙 유지
+  }
+}
+
+@media (max-width: 767px) {
+  .scrollIndicator {
+    &__mouse {
+      width: 20px;
+      height: 32px;
+    }
+    
+    &__wheel {
+      width: 3px;
+      height: 6px;
+    }
+  }
+}
+
