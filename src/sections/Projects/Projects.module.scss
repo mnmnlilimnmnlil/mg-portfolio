@@ -48,11 +48,6 @@
     @include red-border-box(0.8);
     overflow: hidden;
     cursor: pointer;
-
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 30px rgba($color-red, 0.35);
-    }
   }
 
   &__cardLink {
@@ -91,11 +86,30 @@
     padding: $spacing-md;
   }
 
+  &__cardTitleWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+  }
+
   &__cardTitle {
     @include text-important;
     font-size: $font-size-xl;
-    margin-bottom: $spacing-sm;
     text-align: left;
+    color: $color-red;
+    flex: 1;
+    margin: 0;
+  }
+
+  &__cardPeriod {
+    @include text-muted;
+    font-size: $font-size-small;
+    text-align: right;
+    opacity: 0.7;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   &__cardDescription {
@@ -132,6 +146,8 @@
 
   &__moreButton {
     min-width: 200px;
+    border-color: rgba($color-red, 0.3) !important;
+    color: $color-red !important;
   }
 }
 

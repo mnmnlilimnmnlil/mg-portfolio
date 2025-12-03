@@ -4,8 +4,12 @@ import Button from '../../components/Button';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import styles from './Projects.module.scss';
 
-// 프로젝트 이미지 import
-import project1Image from '../../assets/project/project1.png';
+// 프로젝트 비디오 import
+import projectVideo01 from '../../assets/video/projectVideo01.mp4';
+import projectVideo02 from '../../assets/video/projectVideo02.mp4';
+import projectVideo03 from '../../assets/video/projectVideo03.mp4';
+import projectVideo04 from '../../assets/video/projectVideo04.mp4';
+import projectVideo05 from '../../assets/video/projectVideo05.mp4';
 
 const Projects = () => {
   const location = useLocation();
@@ -16,6 +20,7 @@ const Projects = () => {
     return saved === 'true';
   });
   const projectRefs = useRef({});
+  const videoRefs = useRef({});
   const moreButtonRef = useRef(null);
   const isInitialMount = useRef(true);
   const prevShowAllRef = useRef(showAll);
@@ -23,57 +28,48 @@ const Projects = () => {
   const allProjects = [
     {
       id: 1,
-      title: '차세대 교정 업무 시스템 OK',
-      description: `교도관의 업무를 돕는 차세대 교정업무 시스템입니다. React 기반의 현대적인 아키텍처와 성능 최적화 기법을 적용했습니다.`,
-      tech: ['React', 'javascript', 'SCSS', 'Express', 'Axios', 'OpenAI API', 'GSAP', ],
-      image: project1Image,
+      title: '차세대 교정 업무 시스템 "OK"',
+      description: `교도관의 업무를 돕는 차세대 교정업무 시스템. React 기반의 현대적인 아키텍처와 성능 최적화, GPT API를 활용한 챗봇을 구현했습니다.`,
+      tech: ['React', 'javascript', 'SCSS', 'Express', 'Axios', 'OpenAI API', 'GSAP' ],
+      video: projectVideo01,
       link: 'https://mnmnlilimnmnlil.github.io/OK',
-      github: '#',
+      period: '2025.08 ~ 2025.12',
     },
     {
       id: 2,
-      title: 'Project 2',
-      description: '프로젝트 설명입니다.',
-      tech: ['React', 'Node.js'],
-      image: '/project2.jpg',
-      link: '#',
-      github: '#',
+      title: '유기견 입양 플랫폼 "잇다"',
+      description: `유기견과 사람을 따뜻하게 잇는 공간. React를 활용한 유기견 입양 및 후원 플랫폼을 구현했습니다.`,
+      tech: ['React', 'JavaScript', 'React Router DOM', 'CSS', 'localStorage'],
+      video: projectVideo02,
+      link: 'https://mnmnlilimnmnlil.github.io/itda/',
+      period: '2025.03 ~ 2025.06',
     },
     {
       id: 3,
-      title: 'Project 3',
-      description: '프로젝트 설명입니다.',
-      tech: ['React', 'CSS'],
-      image: '/project3.jpg',
-      link: '#',
-      github: '#',
+      title: '경조사 키오스크 서비스 "JO;IN"',
+      description: `Vanilla JavaScript 기반으로 경조사 키오스크 서비스 JO;IN의 인터랙션을 웹으로 구현했습니다.`,
+      tech: ['Vanilla JavaScript', 'HTML', 'CSS', 'Intersection Observer API'],
+      video: projectVideo03,
+      link: 'https://mnmnlilimnmnlil.github.io/Join',
+      period: '2025.03 ~ 2025.06',
     },
     {
       id: 4,
-      title: 'Project 4',
-      description: '프로젝트 설명입니다.',
-      tech: ['JavaScript', 'HTML'],
-      image: '/project4.jpg',
+      title: '청년 취업 현실 게임 "No Exit"',
+      description: `Vanilla JavaScript 기반으로 청년 취업 현실을 은유적으로 표현한 미로형 시리어스 게임을 구현했습니다.`,
+      tech: ['Vanilla JavaScript', 'HTML', 'CSS'],
+      video: projectVideo04,
       link: '#',
-      github: '#',
+      period: '2025.03 ~ 2025.06',
     },
     {
       id: 5,
-      title: 'Project 5',
-      description: '프로젝트 설명입니다.',
-      tech: ['React', 'TypeScript'],
-      image: '/project5.jpg',
+      title: '감정 탐구 웹사이트 "감정이란"',
+      description: `처음으로 HTML/CSS 기반으로 5가지 감정(행복, 슬픔, 불안, 분노, 혐오)을 탐구하는 웹사이트를 구현했습니다.`,
+      tech: ['HTML', 'CSS'],
+      video: projectVideo05,
       link: '#',
-      github: '#',
-    },
-    {
-      id: 6,
-      title: 'Project 6',
-      description: '프로젝트 설명입니다.',
-      tech: ['Vue.js', 'SCSS'],
-      image: '/project6.jpg',
-      link: '#',
-      github: '#',
+      period: '2024.11 ~ 2024.12',
     },
   ];
 
@@ -158,22 +154,53 @@ const Projects = () => {
                   projectRefs.current[project.id] = el;
                 }
               }}
+              onMouseEnter={() => {
+                if (project.video && videoRefs.current[project.id]) {
+                  videoRefs.current[project.id].play();
+                }
+              }}
+              onMouseLeave={() => {
+                if (project.video && videoRefs.current[project.id]) {
+                  videoRefs.current[project.id].pause();
+                  videoRefs.current[project.id].currentTime = 0;
+                }
+              }}
             >
               <div className={styles.projects__cardLink}>
                 <Link to={`/projects/${project.id}`} className={styles.projects__cardContent}>
                   <div className={styles.projects__image}>
-                    {project.image && (
+                    {project.video ? (
+                      <video 
+                        ref={(el) => {
+                          if (el) {
+                            videoRefs.current[project.id] = el;
+                          }
+                        }}
+                        src={project.video} 
+                        className={styles.projects__imageImg}
+                        loop
+                        muted
+                        playsInline
+                      />
+                    ) : project.image ? (
                       <img 
                         src={project.image} 
                         alt={project.title}
                         className={styles.projects__imageImg}
                       />
-                    )}
+                    ) : null}
                   </div>
                   <div className={styles.projects__content}>
-                    <h3 className={styles.projects__cardTitle}>
-                      {project.title}
-                    </h3>
+                    <div className={styles.projects__cardTitleWrapper}>
+                      <h3 className={styles.projects__cardTitle}>
+                        {project.title}
+                      </h3>
+                      {project.period && (
+                        <span className={styles.projects__cardPeriod}>
+                          개발기간 {project.period}
+                        </span>
+                      )}
+                    </div>
                     <p className={styles.projects__cardDescription}>{project.description}</p>
                     <div className={styles.projects__tech}>
                       {project.tech.map((tech) => (

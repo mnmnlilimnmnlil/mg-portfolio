@@ -218,6 +218,10 @@
     line-height: 1.6;
     text-align: left;
 
+    > div {
+      margin-bottom: $spacing-sm;
+    }
+
     h3 {
       @include text-important;
       font-size: $font-size-xl;
@@ -324,6 +328,12 @@
         }
       }
     }
+  }
+
+  &__codeBlock {
+    margin: $spacing-sm 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
   }
 
   &__introduction {

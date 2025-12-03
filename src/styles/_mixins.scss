@@ -192,12 +192,6 @@
   color: rgba($color-white, 0.9);
   font-size: $font-size-small;
   font-weight: 500;
-  @include smooth-transition(all);
-  
-  &:hover {
-    background: rgba($color-red, 0.2);
-    border-color: rgba($color-red, 0.5);
-  }
 }
 
 // Red Link Button (링크 버튼 공통 스타일)

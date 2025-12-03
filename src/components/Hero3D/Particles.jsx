@@ -49,7 +49,13 @@ const Particles = ({ count = 100 }) => {
       <pointLight ref={light} distance={40} intensity={8} color="#E63946" />
       <instancedMesh ref={mesh} args={[null, null, count]}>
         <dodecahedronGeometry args={[0.05, 0]} />
-        <meshStandardMaterial color="#E63946" emissive="#E63946" emissiveIntensity={0.5} />
+        <meshStandardMaterial 
+          color="#E63946" 
+          emissive="#E63946" 
+          emissiveIntensity={0.5}
+          transparent={true}
+          opacity={0.7}
+        />
       </instancedMesh>
     </>
   );
