@@ -6,6 +6,7 @@ const ScrollToTop = () => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(false);
   const isHomePage = location.pathname === '/';
+  const isProjectDetailPage = location.pathname.startsWith('/projects/');
 
   useEffect(() => {
     let rafId = null;
@@ -60,7 +61,7 @@ const ScrollToTop = () => {
     }
   };
 
-  if (!isHomePage || !isVisible) {
+  if ((!isHomePage && !isProjectDetailPage) || !isVisible) {
     return null;
   }
 
