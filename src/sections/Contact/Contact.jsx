@@ -21,14 +21,14 @@ const Contact = () => {
     // TODO: EmailJS 서비스 ID, 템플릿 ID, Public Key 설정 필요
     try {
       await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        'service_19afi2j',
+        'template_uio16du',
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
         },
-        'YOUR_PUBLIC_KEY'
+        'TOlIcprUOxEHIlL0Y'
       );
       
       alert('메시지가 성공적으로 전송되었습니다!');
@@ -91,7 +91,7 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={styles.contact__input}
+                className={styles.contact__input} 
                 placeholder="이메일"
                 required
               />
