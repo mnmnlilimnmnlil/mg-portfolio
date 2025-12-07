@@ -107,6 +107,27 @@
   }
 }
 
+// 데스크탑 큰 화면 스타일 (1920px 이상)
+@media (min-width: 1920px) {
+  .home {
+    &__container {
+      @include section-container(1400px);
+    }
+
+    &__title {
+      font-size: 4rem;
+    }
+
+    &__descriptionText {
+      font-size: $font-size-xl;
+    }
+
+    &__content {
+      padding: $spacing-3xl $spacing-2xl;
+    }
+  }
+}
+
 @include respond-to(md) {
   .home {
     padding-top: 7rem; // 태블릿 네비게이션 바와의 여백
@@ -125,7 +146,7 @@
     }
 
     &__title {
-      font-size: $font-size-2xl;
+      font-size: $font-size-xl;
     }
 
     &__container {
@@ -137,7 +158,7 @@
     }
 
     &__descriptionText {
-      font-size: $font-size-base;
+      font-size: $font-size-small;
     }
 
     &__actions {
@@ -167,7 +188,7 @@
     }
 
     &__title {
-      font-size: $font-size-xl;
+      font-size: $font-size-large;
     }
 
     &__container {
@@ -179,15 +200,15 @@
     }
 
     &__descriptionText {
-      font-size: $font-size-small;
+      font-size: 0.875rem;
     }
 
     &__button {
-      font-size: $font-size-small;
+      font-size: 0.875rem;
       
       svg {
-        width: 0.875rem;
-        height: 0.875rem;
+        width: 0.75rem;
+        height: 0.75rem;
       }
     }
   }

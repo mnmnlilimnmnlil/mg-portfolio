@@ -1,10 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { FaExternalLinkAlt } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaTimes } from 'react-icons/fa';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Button from '../../components/Button';
 import styles from './ProjectDetail.module.scss';
+
+// 프로젝트 이미지 import
+import project1_1 from '../../assets/project/project1_1.png';
+import project1_2 from '../../assets/project/project1_2.png';
+import project1_3 from '../../assets/project/project1_3.png';
+import project1_4 from '../../assets/project/project1_4.png';
+import project1_5 from '../../assets/project/project1_5.png';
+import project1_6 from '../../assets/project/project1_6.png';
+import project1_7 from '../../assets/project/project1_7.png';
+import project1_8 from '../../assets/project/project1_8.png';
+import project1_9 from '../../assets/project/project1_9.png';
+
+// 프로젝트 2 이미지 import
+import project2_1 from '../../assets/project/project2_1.png';
+import project2_2 from '../../assets/project/project2_2.png';
+import project2_3 from '../../assets/project/project2_3.png';
+import project2_4 from '../../assets/project/project2_4.png';
+import project2_5 from '../../assets/project/project2_5.png';
+import project2_6 from '../../assets/project/project2_6.png';
+import project2_7 from '../../assets/project/project2_7.png';
+import project2_8 from '../../assets/project/project2_8.png';
+import project2_9 from '../../assets/project/project2_9.png';
+
+// 프로젝트 3 이미지 import
+import project3_1 from '../../assets/project/project3_1.png';
+import project3_2 from '../../assets/project/project3_2.png';
+import project3_3 from '../../assets/project/project3_3.png';
+import project3_4 from '../../assets/project/project3_4.png';
+import project3_5 from '../../assets/project/project3_5.png';
+import project3_6 from '../../assets/project/project3_6.png';
+import project3_7 from '../../assets/project/project3_7.png';
+import project3_8 from '../../assets/project/project3_8.png';
+import project3_9 from '../../assets/project/project3_9.png';
+
+// 프로젝트 4 이미지 import
+import project4_1 from '../../assets/project/project4_1.png';
+import project4_2 from '../../assets/project/project4_2.png';
+import project4_3 from '../../assets/project/project4_3.png';
+import project4_4 from '../../assets/project/project4_4.png';
+import project4_5 from '../../assets/project/project4_5.png';
+import project4_6 from '../../assets/project/project4_6.png';
+
+// 프로젝트 5 이미지 import
+import project5_1 from '../../assets/project/project5_1.png';
+import project5_2 from '../../assets/project/project5_2.png';
+import project5_3 from '../../assets/project/project5_3.png';
+import project5_4 from '../../assets/project/project5_4.png';
+import project5_5 from '../../assets/project/project5_5.png';
+import project5_6 from '../../assets/project/project5_6.png';
 
 // 마크다운을 파싱하여 코드 블록과 텍스트를 분리하는 함수
 const parseMarkdownWithCode = (text) => {
@@ -143,6 +192,7 @@ const parseMarkdown = (text) => {
 
 const ProjectDetail = () => {
   const { id } = useParams();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   // 프로젝트 데이터
   const projects = {
@@ -154,9 +204,15 @@ const ProjectDetail = () => {
 React를 활용한 인터랙티브한 사용자 경험과 현대적인 프론트엔드 아키텍처를 구현했습니다.`,
       tech: ['React', 'javascript', 'SCSS', 'Express', 'Axios', 'OpenAI API', 'GSAP'],
       images: [
-        '/project-image-1.jpg',
-        '/project-image-2.jpg',
-        '/project-image-3.jpg',
+        project1_1,
+        project1_2,
+        project1_3,
+        project1_4,
+        project1_5,
+        project1_6,
+        project1_7,
+        project1_8,
+        project1_9,
       ],
       link: 'https://mnmnlilimnmnlil.github.io/OK',
       github: '#',
@@ -733,8 +789,15 @@ const formatText = (text) => {
       description: `유기견과 사람을 따뜻하게 잇는 공간. React를 활용한 유기견 입양 및 후원 플랫폼을 구현했습니다.`,
       tech: ['React', 'JavaScript', 'React Router DOM', 'CSS', 'localStorage'],
       images: [
-        '/images/logo1.png',
-        '/images/logo2.png',
+        project2_1,
+        project2_2,
+        project2_3,
+        project2_4,
+        project2_5,
+        project2_6,
+        project2_7,
+        project2_8,
+        project2_9,
       ],
       link: 'https://mnmnlilimnmnlil.github.io/itda/',
       period: '2025.03 ~ 2025.06',
@@ -1442,9 +1505,15 @@ export default function CustomSelect({ value, onValueChange, options, placeholde
       description: `웹 개발 참여한 3인(디자인 2명 프로그래밍 1명) 팀 프로젝트입니다. Vanilla JavaScript 기반으로 경조사 키오스크 서비스 JO;IN의 인터랙션을 웹으로 구현했습니다.`,
       tech: ['Vanilla JavaScript', 'HTML', 'CSS', 'Intersection Observer API'],
       images: [
-        '/images/join-1.jpg',
-        '/images/join-2.jpg',
-        '/images/join-3.jpg',
+        project3_1,
+        project3_2,
+        project3_3,
+        project3_4,
+        project3_5,
+        project3_6,
+        project3_7,
+        project3_8,
+        project3_9,
       ],
       link: 'https://mnmnlilimnmnlil.github.io/Join',
       github: '#',
@@ -1797,11 +1866,14 @@ document.getElementById('scrollTopBtn').onclick = function() {
       description: `Vanilla JavaScript 기반으로 청년 취업 현실을 은유적으로 표현한 미로 탐색 게임을 구현했습니다.`,
       tech: ['Vanilla JavaScript', 'HTML', 'CSS'],
       images: [
-        '/images/noexit-1.jpg',
-        '/images/noexit-2.jpg',
-        '/images/noexit-3.jpg',
+        project4_1,
+        project4_2,
+        project4_3,
+        project4_4,
+        project4_5,
+        project4_6,
       ],
-      link: '#',
+      link: 'https://mnmnlilimnmnlil.github.io/noexit/',
       github: '#',
       period: '2025.03 ~ 2025.06',
       role: '기획, 디자인, 개발 전담',
@@ -2180,11 +2252,14 @@ function drawMap() {
       description: `처음으로 혼자 기획, 디자인, 개발을 모두 맡아 진행한 개인 프로젝트입니다. HTML/CSS 기반으로 5가지 감정(행복, 슬픔, 불안, 분노, 혐오)을 탐구하는 웹사이트를 구현했습니다.`,
       tech: ['HTML', 'CSS'],
       images: [
-        '/images/emotion-1.jpg',
-        '/images/emotion-2.jpg',
-        '/images/emotion-3.jpg',
+        project5_1,
+        project5_2,
+        project5_3,
+        project5_4,
+        project5_5,
+        project5_6,
       ],
-      link: '#',
+      link: 'https://mnmnlilimnmnlil.github.io/emotion/',
       github: '#',
       period: '2024.11 ~ 2024.12',
       role: '기획, 디자인, 개발 전담',
@@ -2503,7 +2578,11 @@ header ul li:nth-child(4) a:hover {
             </h2>
             <div className={styles.projectDetail__images}>
               {project.images.map((image, index) => (
-                <div key={index} className={styles.projectDetail__imageWrapper}>
+                <div 
+                  key={index} 
+                  className={styles.projectDetail__imageWrapper}
+                  onClick={() => setSelectedImage(image)}
+                >
                   <img 
                     src={image} 
                     alt={`${project.title} 이미지 ${index + 1}`}
@@ -2515,6 +2594,27 @@ header ul li:nth-child(4) a:hover {
                 </div>
               ))}
             </div>
+            
+            {selectedImage && (
+              <div 
+                className={styles.projectDetail__imageModal}
+                onClick={() => setSelectedImage(null)}
+              >
+                <FaTimes 
+                  className={styles.projectDetail__imageModalClose}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedImage(null);
+                  }}
+                />
+                <img 
+                  src={selectedImage} 
+                  alt="확대 이미지"
+                  className={styles.projectDetail__imageModalContent}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+            )}
           </div>
 
           <div className={styles.projectDetail__section}>

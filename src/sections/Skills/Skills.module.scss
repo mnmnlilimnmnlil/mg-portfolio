@@ -71,15 +71,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: $spacing-sm;
+    gap: $spacing-xl;
     width: 100%;
-    max-width: 600px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
   &__itemWrapper {
     position: relative;
-    flex: 0 0 calc((100% - #{$spacing-sm * 3}) / 4);
+    flex: 0 0 calc((100% - #{$spacing-xl * 3}) / 4);
     min-width: 0;
   }
 
@@ -87,7 +87,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $spacing-sm;
+    gap: $spacing-lg;
     @include smooth-transition(all);
     cursor: pointer;
     text-decoration: none;
@@ -96,12 +96,12 @@
   }
 
   &__imageWrapper {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: $spacing-md;
+    padding: $spacing-lg;
     @include red-image-wrapper;
   }
 
@@ -135,9 +135,9 @@
 
   &__name {
     @include text-important;
-    font-size: $font-size-base;
+    font-size: $font-size-large;
     font-weight: 600;
-    margin: $spacing-xs 0 0 0;
+    margin: $spacing-sm 0 0 0;
     text-align: center;
   }
 
@@ -191,12 +191,101 @@
   padding-top: calc(2rem + 80px); // 네비게이션 높이 + 여백
 }
 
+// 데스크탑 큰 화면 스타일 (1920px 이상)
+@media (min-width: 1920px) {
+  .skills {
+    &__container {
+      max-width: 1800px;
+    }
+
+    &__title {
+      font-size: $font-size-3xl;
+      margin-bottom: $spacing-md;
+    }
+
+    &__description {
+      font-size: $font-size-large;
+      margin: 0 auto 5rem;
+    }
+
+    &__tabs {
+      gap: $spacing-xl;
+      margin-bottom: 5rem;
+    }
+
+    &__tab {
+      padding: $spacing-md $spacing-xl;
+      font-size: $font-size-large;
+    }
+
+    &__grid {
+      max-width: 1600px;
+      gap: $spacing-2xl;
+    }
+
+    &__itemWrapper {
+      flex: 0 0 calc((100% - #{$spacing-2xl * 3}) / 4);
+    }
+
+    &__imageWrapper {
+      width: 200px;
+      height: 200px;
+      padding: $spacing-xl;
+    }
+
+    &__name {
+      font-size: $font-size-xl;
+    }
+
+    &__tooltip {
+      max-width: 400px;
+      padding: $spacing-md $spacing-lg;
+    }
+
+    &__tooltipName {
+      font-size: $font-size-xl;
+    }
+
+    &__tooltipDescription {
+      font-size: $font-size-large;
+    }
+  }
+}
+
+// 중간 데스크탑/노트북 화면 (1024px 이상 ~ 1919px)
+@include respond-to(lg) {
+  .skills {
+    &__container {
+      max-width: 1400px;
+    }
+
+    &__grid {
+      max-width: 1100px;
+      gap: $spacing-xl;
+    }
+
+    &__itemWrapper {
+      flex: 0 0 calc((100% - #{$spacing-xl * 3}) / 4);
+    }
+
+    &__imageWrapper {
+      width: 160px;
+      height: 160px;
+      padding: $spacing-lg;
+    }
+
+    &__name {
+      font-size: $font-size-large;
+    }
+  }
+}
+
 @include respond-to(md) {
   .skills {
     padding: $spacing-xl $spacing-lg;
 
     &__title {
-      font-size: $font-size-2xl;
+      font-size: $font-size-xl;
       margin-bottom: $spacing-sm;
     }
 
@@ -214,34 +303,35 @@
     }
 
     &__tab {
-      padding: $spacing-xs $spacing-md;
+      padding: $spacing-xs $spacing-sm;
       font-size: $font-size-small;
     }
 
     &__grid {
-      max-width: 360px;
-      gap: $spacing-sm;
+      max-width: 600px;
+      gap: $spacing-md;
+      justify-content: center;
     }
 
     &__itemWrapper {
-      width: calc(50% - #{$spacing-sm * 0.5});
-      max-width: 100px;
+      flex: 0 0 calc((100% - #{$spacing-md * 3}) / 4);
+      min-width: 0;
     }
 
     &__imageWrapper {
-      width: 80px;
-      height: 80px;
-      padding: $spacing-sm;
+      width: 100px;
+      height: 100px;
+      padding: $spacing-md;
     }
 
     &__name {
-      font-size: $font-size-base;
+      font-size: $font-size-small;
     }
 
     &__tooltip {
       width: max-content;
       max-width: 250px;
-      padding: 0.4rem 0.65rem;
+      padding: $spacing-xs $spacing-sm;
       white-space: normal;
     }
 
@@ -253,7 +343,6 @@
     &__tooltipDescription {
       font-size: 0.75rem;
     }
-
   }
 }
 
@@ -263,34 +352,62 @@
     padding: $spacing-xl $spacing-md;
 
     &__title {
-      font-size: $font-size-xl;
+      font-size: $font-size-large;
+      margin-bottom: $spacing-sm;
     }
 
     &__description {
       @include text-muted;
       margin: 0 auto 3rem;
-      font-size: $font-size-small;
+      font-size: 0.875rem;
       max-width: fit-content;
       line-height: 1.5;
     }
 
+    &__tabs {
+      gap: $spacing-xs;
+      margin-bottom: 3rem;
+    }
+
     &__tab {
       font-size: 0.75rem;
-      padding: 0.4rem $spacing-sm;
+      padding: 0.4rem $spacing-xs;
+    }
+
+    &__grid {
+      max-width: 500px;
+      gap: $spacing-sm;
+      justify-content: center;
+    }
+
+    &__itemWrapper {
+      flex: 0 0 calc((100% - #{$spacing-sm * 3}) / 4);
+      min-width: 0;
+    }
+
+    &__imageWrapper {
+      width: 70px;
+      height: 70px;
+      padding: $spacing-xs;
+    }
+
+    &__item {
+      gap: $spacing-xs;
     }
 
     &__name {
-      font-size: $font-size-small;
+      font-size: 0.75rem;
     }
 
     &__tooltip {
       max-width: 200px;
-      padding: 0.35rem 0.6rem;
+      padding: 0.35rem $spacing-xs;
       font-size: 0.75rem;
     }
 
     &__tooltipName {
       font-size: 0.75rem;
+      margin-bottom: 0.15rem;
     }
 
     &__tooltipDescription {

@@ -29,12 +29,13 @@ const Projects = () => {
     {
       id: 1,
       title: '차세대 교정 업무 시스템 "OK"',
-      description: `교도관의 업무를 돕는 차세대 교정업무 시스템. React 기반의 현대적인 아키텍처와 성능 최적화, GPT API를 활용한 챗봇을 구현했습니다.`,
+      description: `교도관의 업무를 돕는 차세대 교정업무 시스템. React 기반의 아키텍처와 성능 최적화, GPT API를 활용한 챗봇을 구현했습니다.`,
       tech: ['React', 'javascript', 'SCSS', 'Express', 'Axios', 'OpenAI API', 'GSAP' ],
       video: projectVideo01,
       link: 'https://mnmnlilimnmnlil.github.io/OK',
       period: '2025.08 ~ 2025.12',
     },
+    
     {
       id: 2,
       title: '유기견 입양 플랫폼 "잇다"',
@@ -44,6 +45,7 @@ const Projects = () => {
       link: 'https://mnmnlilimnmnlil.github.io/itda/',
       period: '2025.03 ~ 2025.06',
     },
+
     {
       id: 3,
       title: '경조사 키오스크 서비스 "JO;IN"',
@@ -59,7 +61,7 @@ const Projects = () => {
       description: `Vanilla JavaScript 기반으로 청년 취업 현실을 은유적으로 표현한 미로형 시리어스 게임을 구현했습니다.`,
       tech: ['Vanilla JavaScript', 'HTML', 'CSS'],
       video: projectVideo04,
-      link: '#',
+      link: 'https://mnmnlilimnmnlil.github.io/noexit/',
       period: '2025.03 ~ 2025.06',
     },
     {
@@ -68,7 +70,7 @@ const Projects = () => {
       description: `처음으로 HTML/CSS 기반으로 5가지 감정(행복, 슬픔, 불안, 분노, 혐오)을 탐구하는 웹사이트를 구현했습니다.`,
       tech: ['HTML', 'CSS'],
       video: projectVideo05,
-      link: '#',
+      link: 'https://mnmnlilimnmnlil.github.io/emotion/',
       period: '2024.11 ~ 2024.12',
     },
   ];
@@ -141,7 +143,7 @@ const Projects = () => {
           <span className={styles.projects__titleHighlight}>프로젝트</span>
         </h2>
         <p className={styles.projects__description}>
-          제작한 프로젝트들을 소개합니다.
+          사용자 경험을 중시하는  
         </p>
         
         <div className={styles.projects__grid}>

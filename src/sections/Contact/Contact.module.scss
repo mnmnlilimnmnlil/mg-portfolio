@@ -32,7 +32,7 @@
     @include text-muted;
     text-align: center;
     margin: 0 auto 3rem;
-    font-size: $font-size-base;
+    font-size: $font-size-large;
     max-width: fit-content;
     line-height: 1.5;
   }
@@ -65,13 +65,13 @@
 
   &__infoLabel {
     @include text-muted;
-    font-size: $font-size-small;
+    font-size: $font-size-base;
     font-weight: 500;
   }
 
   &__infoValue {
     @include text-normal;
-    font-size: $font-size-base;
+    font-size: $font-size-large;
     color: rgba($color-white, 0.9);
     font-weight: 400;
 
@@ -103,6 +103,8 @@
   &__input,
   &__textarea {
     @include red-input-field;
+    font-size: $font-size-base;
+    padding: $spacing-md $spacing-lg;
     
     &::placeholder {
       color: rgba($color-white, 0.5);
@@ -112,7 +114,7 @@
 
   &__textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 150px;
   }
 
   &__button {
@@ -136,12 +138,58 @@
   padding-top: calc(2rem + 80px); // 네비게이션 높이 + 여백
 }
 
+// 데스크탑 큰 화면 스타일 (1920px 이상)
+@media (min-width: 1920px) {
+  .contact {
+    &__container {
+      max-width: 800px;
+    }
+
+    &__title {
+      font-size: $font-size-3xl;
+      margin-bottom: $spacing-md;
+    }
+
+    &__description {
+      font-size: $font-size-large;
+      margin: 0 auto 4rem;
+    }
+
+    &__info {
+      gap: $spacing-2xl;
+      margin-bottom: 4rem;
+    }
+
+    &__infoLabel {
+      font-size: $font-size-base;
+    }
+
+    &__infoValue {
+      font-size: $font-size-large;
+    }
+
+    &__formWrapper {
+      padding: $spacing-2xl;
+    }
+
+    &__input,
+    &__textarea {
+      font-size: $font-size-base;
+      padding: $spacing-md $spacing-lg;
+    }
+
+    &__footer {
+      font-size: $font-size-xl;
+    }
+  }
+}
+
 @include respond-to(md) {
   .contact {
     padding: $spacing-xl $spacing-lg;
 
     &__title {
-      font-size: $font-size-2xl;
+      font-size: $font-size-xl;
       margin-bottom: $spacing-sm;
     }
 
@@ -157,7 +205,15 @@
       flex-direction: row;
       gap: $spacing-md;
       margin-bottom: 2rem;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
+    }
+
+    &__infoLabel {
+      font-size: $font-size-small;
+    }
+
+    &__infoValue {
+      font-size: $font-size-small;
     }
 
     &__infoItem {
@@ -168,6 +224,15 @@
     &__formWrapper {
       padding: $spacing-lg;
     }
+
+    &__input,
+    &__textarea {
+      font-size: $font-size-small;
+    }
+
+    &__footer {
+      font-size: $font-size-base;
+    }
   }
 }
 
@@ -177,15 +242,21 @@
     padding: $spacing-xl $spacing-md;
 
     &__title {
-      font-size: $font-size-xl;
+      font-size: $font-size-large;
     }
 
     &__description {
       @include text-muted;
       margin: 0 auto 3rem;
-      font-size: $font-size-small;
+      font-size: 0.875rem;
       max-width: fit-content;
       line-height: 1.5;
+    }
+
+    &__info {
+      flex-direction: column;
+      gap: $spacing-md;
+      align-items: center;
     }
 
     &__infoLabel {
@@ -198,11 +269,11 @@
 
     &__input,
     &__textarea {
-      font-size: $font-size-small;
+      font-size: 0.875rem;
     }
 
     &__footer {
-      font-size: $font-size-base;
+      font-size: $font-size-small;
     }
   }
 }

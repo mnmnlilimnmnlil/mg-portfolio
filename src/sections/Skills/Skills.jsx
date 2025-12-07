@@ -31,19 +31,19 @@ const Skills = () => {
           id: 'html5',
           name: 'HTML5', 
           image: html5Image,
-          description: '의도에 맞는 시맨틱 태그 활용 웹 표준을 준수\n\nCDN을 통한 외부 라이브러리 import 최적화된 구조 설계'
+          description: '의도에 맞는 시맨틱 태그 활용\n 웹 표준 준수\nCDN을 통한 외부 라이브러리 import\n 최적화된 구조 설계'
         },
         { 
           id: 'css3',
           name: 'CSS3 / SCSS', 
           image: sassImage,
-          description: '레이아웃 구성, 반응형 디자인, 애니메이션, CSS 변수 및 믹스인\n\nScss를 통한 구조적 스타일 관리 재사용성 높은 코드 작성'
+          description: '레이아웃 구성, 반응형 디자인,\n 애니메이션, CSS 변수 및 믹스인\n\nScss를 통한 구조적 스타일 관리\n 재사용성 높은 코드 작성'
         },
         { 
           id: 'javascript',
           name: 'Vanilla JavaScript (ES6+)', 
           image: javascriptImage,
-          description: 'DOM 조작, 이벤트 제어, 비동기 처리(Promise/ async-await)\n\nIntersectionObserver를 활용한 스크롤 위치에 따른 인터렉션 애니메이션'
+          description: 'DOM 조작, 이벤트 제어, 비동기 처리(Promise/ async-await)\n\nIntersectionObserver를 활용한\n 스크롤 위치에 따른 인터렉션 애니메이션'
         },
         { 
           id: 'react',
@@ -66,7 +66,7 @@ const Skills = () => {
           id: 'mongodb',
           name: 'MongoDB', 
           image: mongodbImage,
-          description: '데이터베이스 설계 및 Mongoose 연동 학습 중'
+          description: '데이터베이스 설계 및 Mongoose 연동'
         },
       ]
     },
@@ -164,7 +164,7 @@ const Skills = () => {
           <span className={styles.skills__titleHighlight}>기술</span>
         </h2>
         <p className={styles.skills__description}>
-          사용할 수 있는 기술들을 소개합니다.
+          하나의 기술도 더 깊게
         </p>
         
         <div className={styles.skills__tabs}>

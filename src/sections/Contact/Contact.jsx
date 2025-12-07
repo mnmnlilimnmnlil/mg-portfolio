@@ -117,7 +117,7 @@ const Contact = () => {
         </div>
         
         <p className={styles.contact__footer}>
-          무엇이든 해내는 모습 보여드리겠습니다. 감사합니다.
+          결국 해내는 개발자 박민규 입니다 감사합니다.
         </p>
       </div>
     </section>

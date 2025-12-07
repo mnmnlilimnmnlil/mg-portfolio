@@ -102,7 +102,7 @@
 
 // Red Input Field (입력 필드 공통 스타일)
 @mixin red-input-field {
-  padding: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
   background: rgba($color-black, 0.5);
   border: 1px solid rgba($color-red, 0.25);
   border-radius: 0.5rem;
@@ -236,7 +236,7 @@
   font-weight: 700;
   color: $color-white;
   margin-top: $spacing-2xl;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   text-align: center;
 }
 
